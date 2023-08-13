@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Counter } from './components/Counter';
-import { FetchData } from './components/FetchData';
 import { Home } from './components/Home';
 import { Layout } from './components/Layout';
-import './custom.css';
 import { Dashboard } from './components/Dashboard';
+import { useAuth0 } from "@auth0/auth0-react";
+import './custom.css';
 
-export default class App extends Component {
+const App = () => {
 
-
-  render() {
+    const { isLoading } = useAuth0();
+  
     return (
       <Layout>
             <Routes>
                 <Route element={<Home />} index='true'></Route>
-                <Route element={<Dashboard /> } path="/dashboard"></Route>
-                <Route element={<Counter />} path='/counter'></Route>
-                <Route element={<FetchData />} path='/fetch-data'></Route>
-        </Routes>
+            </Routes>
       </Layout>
     );
-  }
+  
 }
+
+
+export default App;

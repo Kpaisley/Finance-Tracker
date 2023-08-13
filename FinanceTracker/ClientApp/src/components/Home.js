@@ -1,23 +1,22 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import { Dashboard } from "./Dashboard";
 
 export const Home = (props) => {
 
-    const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
+    const { loginWithRedirect, isAuthenticated, isLoading } = useAuth0();
     
+    //Return login screen if not logged in.
+    if (!isAuthenticated && !isLoading) {
+        return (
+            loginWithRedirect()
+        );
+    }
 
-    
-
-    return (
-      <div>
-            <h1>Budget Flow</h1>
-
-            <button onClick={() => loginWithRedirect()}>Log In</button>
-            <button onClick={() => logout()}>Log Out</button>
-
-            <h3>Logged In: { String(isAuthenticated) }</h3>
-
-            
-      </div>
+    //Return Dashboard.js if user is logged in.
+    return isAuthenticated && (
+        <Dashboard />
     );
+
+    
  
 }
