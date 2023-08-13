@@ -19,6 +19,8 @@ root.render(
         authorizationParams={{
             redirect_uri: window.location.origin
         }}
+        useRefreshTokens={true}
+        cacheLocation="localstorage"
     >
         <BrowserRouter basename={baseUrl}>
             <App />
