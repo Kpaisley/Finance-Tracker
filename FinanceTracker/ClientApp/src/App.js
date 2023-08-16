@@ -9,7 +9,8 @@ import './custom.css';
 const App = () => {
 
     const { isLoading } = useAuth0();
-  
+
+
     return (
       <Layout>
             <Routes>

@@ -1,11 +1,11 @@
 ﻿import { useAuth0 } from "@auth0/auth0-react";
-import { Home } from "./Home";
 
 
 
 export const Dashboard = (props) => {
 
     const { logout } = useAuth0();
+
 
     return(
         <div>
