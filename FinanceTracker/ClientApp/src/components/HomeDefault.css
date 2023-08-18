@@ -1,0 +1,28 @@
+﻿
+#default-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    background: url('../../public/Finance.jpg') no-repeat center fixed;
+    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#default-container h1 {
+    font-weight: 600;
+    margin: 200px auto 25px auto;
+}
+
+#default-container h3 {
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+#default-container button {
+    margin: 100px auto 100px auto;
+    padding: 10px;
+    border-radius: 22px;
+    font-weight: 600;
+}
