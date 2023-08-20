@@ -1,28 +1,26 @@
 ﻿
-#default-container {
+#home-default {
     display: flex;
+    align-items: center;
     flex-direction: column;
-    justify-content: center;
     text-align: center;
-    color: white;
-    background: url('../../public/Finance.jpg') no-repeat center fixed;
-    min-height: 100vh;
+    color: rgb(252,252,252);
     font-family: 'Montserrat', sans-serif;
 }
 
-#default-container h1 {
-    font-weight: 600;
-    margin: 200px auto 25px auto;
+#home-default h1 {
+    padding-top: 25vh;
 }
 
-#default-container h3 {
-    font-weight: 500;
-    text-decoration: underline;
-}
-
-#default-container button {
+#home-default button {
     margin: 100px auto 100px auto;
     padding: 10px;
     border-radius: 22px;
     font-weight: 600;
+}
+
+.finance-bg {
+    background: url('../../public/Finance.jpg') no-repeat center fixed;
+    min-height: 100vh;
+    min-width: 100vw;
 }
