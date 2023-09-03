@@ -1,5 +1,8 @@
 ﻿import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import './Dashboard.css';
 
 
 
@@ -23,28 +26,41 @@ export const Dashboard = (props) => {
      
     
 
-    return(
-        <div>
-            <h1>Welcome to your Dashboard!</h1>
+    return (
 
-            <button onClick={() => logout()}>Log Out</button>
+        <div id="dashboard">
+            <div className="dashboard-bg">
+                <div className="logout-btn" onClick={() => logout()}>
+                    <FontAwesomeIcon icon={faArrowRightFromBracket} />
+                </div>
 
-            <br />
-            <br />
-
-           
-
-            <br />
-            <br />
-            <div>
-                {budgetsLoading ? (
-                    <h1>Loading...</h1>
-                ) : (
-                    <h1>Total Budgets: { budgets.length }</h1>
-                )}
+                <h1 className="title">Welcome to your Dashboard!</h1>
             </div>
-            
+            <div>
+                <h3>You have {budgets.length} / 3 budgets!</h3>
+            </div>
         </div>
+
+
+
+
+
+
+        //<div>
+        //    <h1>Welcome to your Dashboard!</h1>
+
+        //    <button onClick={() => logout()}>Log Out</button>
+
+
+        //    <div>
+        //        {budgetsLoading ? (
+        //            <h1>Loading...</h1>
+        //        ) : (
+        //            <h1>Total Budgets: { budgets.length }</h1>
+        //        )}
+        //    </div>
+            
+        //</div>
     );
 
 }

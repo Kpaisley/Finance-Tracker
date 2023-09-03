@@ -1,0 +1,32 @@
+﻿
+#dashboard{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.dashboard-bg {
+    background-image: linear-gradient(to right bottom, #000000, #2a0c12, #4b0816, #6c0112, #8b0000);
+    min-width: 100vw;
+    min-height: 50vh;
+    padding: 10px 50px;
+}
+
+.title {
+    color: #DDDDDD;
+    text-align: center;
+}
+
+.logout-btn {
+    text-align: right;
+    color: #CCCCCC;
+    margin: 15px 0 35px 0;
+    font-size: large;
+}
+
+.logout-btn:hover {
+    color: #DDDDDD;
+    cursor: pointer;
+}
+
+
