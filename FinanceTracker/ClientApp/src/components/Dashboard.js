@@ -12,6 +12,28 @@ export const Dashboard = (props) => {
     const [budgets, setBudgets] = useState([]);
     const [budgetsLoading, setBudgetsLoading] = useState(true);
 
+    //If budgetsLoading = true, return a loader icon. Else return a chart displaying a users budget info.
+    function budgetsInfo() {
+        return (
+            <div>
+                {budgetsLoading ? (
+                    <div className="loader"><div></div><div></div><div></div><div></div></div>
+                ) : (
+                    <div className="budget-info">
+                            {
+                                budgets.map(budget =>
+                                    <div key={budget.id} className="budget">
+                                        {budget.budgetName}
+                                    </div>
+                                )
+                                    
+                            }
+                    </div>
+               )}
+            </div>
+        );
+    }
+
     async function populateBudgets(userID) {
         const response = await fetch('budgets/' + userID);
         const data = await response.json();
@@ -35,32 +57,15 @@ export const Dashboard = (props) => {
                 </div>
 
                 <h1 className="title">Welcome to your Dashboard!</h1>
+                <h4>Total Budgets: {budgets.length} / 3</h4>
+                
             </div>
-            <div>
-                <h3>You have {budgets.length} / 3 budgets!</h3>
-            </div>
+                {budgetsInfo()}
         </div>
 
 
-
-
-
-
-        //<div>
-        //    <h1>Welcome to your Dashboard!</h1>
-
-        //    <button onClick={() => logout()}>Log Out</button>
-
-
-        //    <div>
-        //        {budgetsLoading ? (
-        //            <h1>Loading...</h1>
-        //        ) : (
-        //            <h1>Total Budgets: { budgets.length }</h1>
-        //        )}
-        //    </div>
             
-        //</div>
+        
     );
 
 }

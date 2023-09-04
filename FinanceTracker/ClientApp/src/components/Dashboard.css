@@ -17,6 +17,12 @@
     text-align: center;
 }
 
+h4 {
+    color: #DDDDDD;
+    text-align: center;
+    margin-top: 30vh;
+}
+
 .logout-btn {
     text-align: right;
     color: #CCCCCC;
@@ -27,6 +33,20 @@
 .logout-btn:hover {
     color: #DDDDDD;
     cursor: pointer;
+}
+
+.budget-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 2px solid;
+    width: 100vw;
+    align-content: center;
+    text-align: center;
+}
+
+.budget {
+    margin: auto;
 }
 
 
