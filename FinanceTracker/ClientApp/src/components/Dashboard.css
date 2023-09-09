@@ -17,22 +17,37 @@
     text-align: center;
 }
 
-h4 {
+#dashboard h4 {
     color: #DDDDDD;
     text-align: center;
-    margin-top: 30vh;
+    margin: 25vh auto 3vh auto;
+}
+
+#dashboard p {
+    color: #CCCCCC;
+    width:fit-content;
+    margin: auto;
+}
+
+#dashboard p:hover {
+    color: #FFFFFF;
+    font-weight: 500;
+    cursor: pointer;
 }
 
 .logout-btn {
-    text-align: right;
     color: #CCCCCC;
-    margin: 15px 0 35px 0;
+    margin: 15px 0 35px auto;
     font-size: large;
+    overflow: visible;
+    max-height: 0;
+    max-width: 0;
 }
 
 .logout-btn:hover {
-    color: #DDDDDD;
+    color: #FFFFFF;
     cursor: pointer;
+    font-size: larger;
 }
 
 .budget-info {

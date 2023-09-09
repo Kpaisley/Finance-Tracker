@@ -58,6 +58,7 @@ export const Dashboard = (props) => {
 
                 <h1 className="title">Welcome to your Dashboard!</h1>
                 <h4>Total Budgets: {budgets.length} / 3</h4>
+                <p>Add a Budget</p>
                 
             </div>
                 {budgetsInfo()}
