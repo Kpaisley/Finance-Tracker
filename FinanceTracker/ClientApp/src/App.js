@@ -13,9 +13,7 @@ const App = () => {
 
     return (
       <Layout>
-            <Routes>
-                <Route element={<Home />} index='true'></Route>
-            </Routes>
+            <Home />
       </Layout>
     );
   
