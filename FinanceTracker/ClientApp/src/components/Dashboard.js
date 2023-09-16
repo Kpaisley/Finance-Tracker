@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import './Dashboard.css';
-import { Link } from "react-router-dom";
+import { AddBudget } from "./AddBudget";
 
 
 
@@ -61,7 +61,7 @@ export const Dashboard = (props) => {
 
                 <h1 className="title">Welcome to your Dashboard!</h1>
                 <h4>Total Budgets: {budgets.length} / 3</h4>
-                <Link to='add-budget'><p>Add a Budget</p></Link>
+                <AddBudget />
 
 
                 

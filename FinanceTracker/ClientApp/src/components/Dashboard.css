@@ -27,18 +27,6 @@ a {
     text-decoration: none;
 }
 
-#dashboard p {
-    color: #CCCCCC;
-    width:fit-content;
-    margin: auto;
-}
-
-#dashboard p:hover {
-    color: #FFFFFF;
-    font-weight: 500;
-    cursor: pointer;
-}
-
 .logout-btn {
     color: #CCCCCC;
     margin: 15px 0 35px auto;

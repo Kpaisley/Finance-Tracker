@@ -1,0 +1,15 @@
+﻿p {
+    color: #CCCCCC;
+    width: fit-content;
+    margin: auto;
+}
+
+p:hover {
+    color: #FFFFFF;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.add-budget-form {
+    border: 2px solid;
+}

@@ -1,13 +1,21 @@
-﻿import { Link } from "react-router-dom";
-
+﻿import { useEffect } from 'react';
+import { useState } from 'react';
+import './AddBudget.css';
 
 export const AddBudget = (props) => {
 
+    const [formOpen, setFormOpen] = useState(false);
+
+    
+
     return (
         <>
-            ADD BUDGET WORKS!!!
-            <br />
-            <Link to='/'>Go back</Link>
+            <p>Add Budget</p>
+            <form className="add-budget-form">
+                <label>Budget Name:
+                    <input type="text"></input>
+                </label>
+            </form>
         </>
     );
 }
