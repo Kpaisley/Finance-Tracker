@@ -1,15 +1,71 @@
-﻿p {
+﻿
+#add-budget {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 2px solid;
+}
+
+.add-budget-btn {
     color: #CCCCCC;
     width: fit-content;
     margin: auto;
 }
 
-p:hover {
+.add-budget-btn:hover {
     color: #FFFFFF;
     font-weight: 500;
     cursor: pointer;
 }
 
 .add-budget-form {
-    border: 2px solid;
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+    max-height: 50vh;
 }
+
+.form-label {
+    color: #CCCCCC;
+    font-size: x-large;
+    width: fit-content;
+    margin: 0px auto 5px auto;
+    text-decoration: underline;
+}
+
+.form-input, .submit-btn {
+    width: fit-content;
+    margin: 5px auto 5px auto;
+}
+
+
+
+
+.hide {
+    opacity: 0;
+    max-height: 0;
+}
+
+#success-msg {
+    color: #FFFFFF;
+    margin: 5px auto 5px auto;
+    font-weight: 500;
+}
+
+#error-msg {
+    color: red;
+    margin: 5px auto 5px auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

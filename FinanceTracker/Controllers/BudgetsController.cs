@@ -1,4 +1,5 @@
 ﻿using FinanceTracker.Data;
+using FinanceTracker.Data.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -27,8 +28,9 @@ namespace FinanceTracker.Controllers
 
         // POST api/<BudgetsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] AddBudgetDTO value)
         {
+            var budgetToAdd = new AddBudgetDTO { userID = value.userID, budgetName = value.budgetName };
         }
 
         // PUT api/<BudgetsController>/5

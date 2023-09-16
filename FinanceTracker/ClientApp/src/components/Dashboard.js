@@ -38,10 +38,16 @@ export const Dashboard = (props) => {
    
 
     async function populateBudgets(userID) {
-        const response = await fetch('budgets/' + userID);
-        const data = await response.json();
-        setBudgets(data);
-        setBudgetsLoading(false);
+
+        try {
+            const response = await fetch('budgets/' + userID);
+            const data = await response.json();
+            setBudgets(data);
+            setBudgetsLoading(false);
+        }
+        catch (error) {
+            console.log(error.message);
+        }
         
     }
 
@@ -53,7 +59,7 @@ export const Dashboard = (props) => {
 
     return (
 
-        <div id="dashboard">
+        <div id="dashboard" className='noselect'>
             <div className="dashboard-bg">
                 <div className="logout-btn" onClick={() => logout()}>
                     <FontAwesomeIcon icon={faArrowRightFromBracket} />
@@ -61,7 +67,7 @@ export const Dashboard = (props) => {
 
                 <h1 className="title">Welcome to your Dashboard!</h1>
                 <h4>Total Budgets: {budgets.length} / 3</h4>
-                <AddBudget />
+                <AddBudget userID={user.sub} budgetsLength={budgets.length} />
 
 
                 

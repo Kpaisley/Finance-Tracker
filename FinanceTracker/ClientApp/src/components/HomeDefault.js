@@ -7,7 +7,7 @@ export const HomeDefault = (props) => {
     const { loginWithRedirect } = useAuth0();
 
     return (
-        <div id="home-default">
+        <div id="home-default" className='noselect'>
             <div className="finance-bg">
                 <h1>BUDGET FLOW</h1>
                 <h3>TRACK YOUR SPENDING TODAY</h3>
