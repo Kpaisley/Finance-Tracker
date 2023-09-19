@@ -60,13 +60,16 @@ export const AddBudget = (props) => {
             }
 
             try {
+                props.setBudgetsLoading(true);
                 const response = await fetch('/budgets', requestOptions);
-                if (response.status == 200) {
-                    successMessage.innerHTML = 'Budget Successfully Created!'
-                }
+                const data = await response.json();
+                props.setBudgets(data)
+                props.setBudgetsLoading(false);
+                successMessage.innerHTML = "Budget Successfully Created!";
             }
             catch (error) {
                 console.log(error.message);
+                props.setBudgetsLoading(false);
             }
         }
 

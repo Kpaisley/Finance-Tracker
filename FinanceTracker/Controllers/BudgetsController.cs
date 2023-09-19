@@ -17,7 +17,7 @@ namespace FinanceTracker.Controllers
             _context = context;
         }
 
-        //RETURN A USERS BUDGETS
+        //RETURN A USERS BUDGETS FROM THE DATABASE
         // GET api/<BudgetsController>/5
         [HttpGet("{userID}")]
         public IEnumerable<Budget> Get(string userID)
@@ -26,11 +26,19 @@ namespace FinanceTracker.Controllers
             return budgets;
         }
 
+        //ADD A NEW BUDGET TO THE DATABASE
         // POST api/<BudgetsController>
         [HttpPost]
-        public void Post([FromBody] AddBudgetDTO value)
+        public IEnumerable<Budget> Post([FromBody] AddBudgetDTO value)
         {
-            var budgetToAdd = new AddBudgetDTO { userID = value.userID, budgetName = value.budgetName };
+            //Create and save new budget to database
+            Budget budgetToAdd = new Budget { UserId = value.userID, BudgetName = value.budgetName };
+            _context.Budgets.Add(budgetToAdd);
+            _context.SaveChanges();
+
+            //Return updated budget list 
+            var budgets = _context.Budgets.Where(b => b.UserId.Equals(value.userID)).ToList();
+            return budgets;
         }
 
         // PUT api/<BudgetsController>/5
