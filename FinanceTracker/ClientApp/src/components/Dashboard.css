@@ -15,12 +15,13 @@
 .title {
     color: #DDDDDD;
     text-align: center;
+    margin: 0 auto 25vh auto;
 }
 
 #dashboard h4 {
     color: #DDDDDD;
     text-align: center;
-    margin: 25vh auto 3vh auto;
+    margin: 0 auto 0 auto;
 }
 
 a {

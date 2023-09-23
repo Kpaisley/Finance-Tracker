@@ -5,6 +5,13 @@
     overflow: hidden;
 }
 
+#max-budgets {
+    text-align: center;
+    color: #AAAAAA;
+    margin: 12px auto 8px auto;
+    text-decoration: underline;
+}
+
 .add-budget-btn {
     color: #CCCCCC;
     width: fit-content;
@@ -41,9 +48,6 @@
     max-width: fit-content;
     margin: 5px auto 5px auto;
 }
-
-
-
 
 .hide {
     opacity: 0;

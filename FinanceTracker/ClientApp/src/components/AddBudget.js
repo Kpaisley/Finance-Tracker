@@ -96,7 +96,9 @@ export const AddBudget = (props) => {
     //Only display this component if there is less than 3 budgets in the database.
     if (props.budgetsLength >= 3) {
         return (
-            null
+            <div id="max-budgets">
+                Maximum Budgets Reached
+            </div>
         );
     }
 
