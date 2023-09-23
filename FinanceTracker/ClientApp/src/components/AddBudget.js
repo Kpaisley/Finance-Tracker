@@ -11,11 +11,9 @@ export const AddBudget = (props) => {
         const budgetInput = document.querySelector('.form-input');
         budgetInput.value = '';
 
-        //Reset any current error/success messages
+        //Reset any current error messages
         const errorMessage = document.querySelector('#error-msg');
-        const successMessage = document.querySelector('#success-msg');
         errorMessage.innerHTML = '&nbsp;';
-        successMessage.innerHTML = '&nbsp;'
 
         //Open 'Add Budget Form' when 'Add Budget Button' is clicked.
         const form = document.querySelector('.add-budget-form');
@@ -33,7 +31,6 @@ export const AddBudget = (props) => {
     async function createBudget(e) {
         e.preventDefault();
         const budgetName = e.target[0].value;
-        const successMessage = document.querySelector('#success-msg');
         const errorMessage = document.querySelector('#error-msg');
 
         //Validate that a user has a budget name between 1 and 50 characters.
@@ -65,7 +62,8 @@ export const AddBudget = (props) => {
                 const data = await response.json();
                 props.setBudgets(data)
                 props.setBudgetsLoading(false);
-                successMessage.innerHTML = "Budget Successfully Created!";
+                alert('Budget Created Successfully!');
+                
             }
             catch (error) {
                 console.log(error.message);
@@ -93,8 +91,9 @@ export const AddBudget = (props) => {
 
     
 
-    //Only display this component if there is less than 3 budgets in the database.
+    //Render if the user has reached the maximum number of budgets stored.
     if (props.budgetsLength >= 3) {
+
         return (
             <div id="max-budgets">
                 Maximum Budgets Reached
@@ -102,13 +101,13 @@ export const AddBudget = (props) => {
         );
     }
 
+    //Render if the user has less than the maximum number of budgets stored.
     return (
-
 
         <div id="add-budget">
             <p className="add-budget-btn" onClick={(e) => openBudgetForm(e)}>Add Budget</p>
-            <p id='success-msg'>&nbsp;</p>
-            <form className="add-budget-form hide" onSubmit={(e) => createBudget(e) }>
+
+            <form className="add-budget-form hide" onSubmit={(e) => createBudget(e)}>
                 <label className="form-label">Budget Name</label>
                 <input className="form-input" type="text" maxLength='50'></input>
                 <input className='submit-btn' type="submit" value="Create Budget"></input>

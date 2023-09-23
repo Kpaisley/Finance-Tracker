@@ -9,7 +9,7 @@
     background-image: linear-gradient(to right bottom, #000000, #2a0c12, #4b0816, #6c0112, #8b0000);
     min-width: 100vw;
     max-height: auto;
-    padding: 10px 50px;
+    padding: 5px 50px;
 }
 
 .title {
@@ -21,11 +21,7 @@
 #dashboard h4 {
     color: #DDDDDD;
     text-align: center;
-    margin: 0 auto 0 auto;
-}
-
-a {
-    text-decoration: none;
+    margin: 0 auto 10px auto;
 }
 
 .logout-btn {

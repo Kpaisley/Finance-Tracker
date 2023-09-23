@@ -8,7 +8,7 @@
 #max-budgets {
     text-align: center;
     color: #AAAAAA;
-    margin: 12px auto 8px auto;
+    margin: 30px auto 8px auto;
     text-decoration: underline;
 }
 
@@ -16,6 +16,7 @@
     color: #CCCCCC;
     width: fit-content;
     margin: auto;
+    padding: 5px;
 }
 
 .add-budget-btn:hover {

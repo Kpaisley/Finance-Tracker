@@ -67,10 +67,8 @@ export const Dashboard = (props) => {
 
                 <h1 className="title">Welcome to your Dashboard!</h1>
                 <h4>Total Budgets: {budgets.length} / 3</h4>
-                <AddBudget userID={user.sub} budgetsLength={budgets.length} setBudgets={setBudgets} setBudgetsLoading={setBudgetsLoading} />
-
-
                 
+                <AddBudget userID={user.sub} budgetsLength={budgets.length} setBudgets={setBudgets} setBudgetsLoading={setBudgetsLoading} />
             </div>
                 {budgetsInfo()}
         </div>
