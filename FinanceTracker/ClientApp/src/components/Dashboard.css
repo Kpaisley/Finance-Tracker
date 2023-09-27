@@ -18,7 +18,7 @@
     margin: 0 auto 25vh auto;
 }
 
-#dashboard h4 {
+.budget-count {
     color: #DDDDDD;
     text-align: center;
     margin: 0 auto 10px auto;
@@ -39,17 +39,5 @@
     font-size: larger;
 }
 
-.budget-info {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border: 2px solid;
-    width: 100vw;
-    align-content: center;
-    text-align: center;
-}
 
-.budget {
-    margin: auto;
-}
 

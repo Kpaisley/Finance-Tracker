@@ -1,0 +1,31 @@
+﻿
+.no-budgets {
+    width: auto;
+    padding: 15px;
+    margin-top: 25px;
+    text-align: center;
+}
+
+.no-budgets div {
+    margin-top: 50px;
+    text-decoration: underline;
+    font-weight: 700;
+}
+
+
+
+.budget-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 2px solid;
+    width: 100vw;
+    align-content: center;
+    text-align: center;
+}
+
+.budget {
+    margin: auto;
+    border: 2px solid;
+    padding: 5px;
+}

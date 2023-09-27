@@ -60,7 +60,7 @@ export const AddBudget = (props) => {
                 props.setBudgetsLoading(true);
                 const response = await fetch('/budgets', requestOptions);
                 const data = await response.json();
-                props.setBudgets(data)
+                props.setBudgets(data);
                 props.setBudgetsLoading(false);
                 alert('Budget Created Successfully!');
                 

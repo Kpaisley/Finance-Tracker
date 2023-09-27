@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import './Dashboard.css';
 import { AddBudget } from "./AddBudget";
+import { BudgetInfo } from "./BudgetInfo";
 
 
 
@@ -12,28 +13,6 @@ export const Dashboard = (props) => {
 
     const [budgets, setBudgets] = useState([]);
     const [budgetsLoading, setBudgetsLoading] = useState(true);
-
-    //If budgetsLoading = true, return a loader icon. Else return a chart displaying a users budget info.
-    function budgetsInfo() {
-        return (
-            <div>
-                {budgetsLoading ? (
-                    <div className="loader"><div></div><div></div><div></div><div></div></div>
-                ) : (
-                    <div className="budget-info">
-                            {
-                                budgets.map(budget =>
-                                    <div key={budget.id} className="budget">
-                                        {budget.budgetName}
-                                    </div>
-                                )
-                                    
-                            }
-                    </div>
-               )}
-            </div>
-        );
-    }
 
    
 
@@ -54,6 +33,8 @@ export const Dashboard = (props) => {
     useEffect(() => {
         populateBudgets(user.sub)
     }, []);
+
+    
      
     
 
@@ -66,11 +47,12 @@ export const Dashboard = (props) => {
                 </div>
 
                 <h1 className="title">Welcome to your Dashboard!</h1>
-                <h4>Total Budgets: {budgets.length} / 3</h4>
+                <h4 className="budget-count">Total Budgets: {budgets.length} / 3</h4>
                 
                 <AddBudget userID={user.sub} budgetsLength={budgets.length} setBudgets={setBudgets} setBudgetsLoading={setBudgetsLoading} />
             </div>
-                {budgetsInfo()}
+
+            <BudgetInfo budgets={budgets} budgetsLoading={budgetsLoading}></BudgetInfo>
         </div>
 
 
