@@ -1,4 +1,5 @@
 ﻿import './BudgetInfo.css';
+import { BudgetItem } from './BudgetItem';
 
 export const BudgetInfo = (props) => {
 
@@ -24,11 +25,9 @@ export const BudgetInfo = (props) => {
         return (
             <div className="budget-info">
                 {
+
                     props.budgets.map(budget =>
-                        //ADD BudgetItem COMPONENT HERE
-                        <div key={budget.id} className="budget">
-                            {budget.budgetName}
-                        </div>
+                        <BudgetItem key={budget.id} budgetID={budget.id} budgetName={budget.budgetName} />
                     )
                 }
             </div>
