@@ -32,7 +32,7 @@ namespace FinanceTracker.Controllers
         public IEnumerable<Budget> Post([FromBody] AddBudgetDTO value)
         {
             //Create and save new budget to database
-            Budget budgetToAdd = new Budget { UserId = value.userID, BudgetName = value.budgetName };
+            Budget budgetToAdd = new Budget { UserId = value.userID, BudgetName = value.budgetName, DateCreated = DateTime.Now.Date };
             _context.Budgets.Add(budgetToAdd);
             _context.SaveChanges();
 

@@ -11,5 +11,9 @@ public partial class Budget
 
     public string BudgetName { get; set; } = null!;
 
+    public DateTime DateCreated { get; set; }
+
+    public DateTime? DateLastModified { get; set; }
+
     public virtual ICollection<Category> Categories { get; set; } = new List<Category>();
 }

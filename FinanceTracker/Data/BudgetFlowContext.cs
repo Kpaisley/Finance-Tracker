@@ -6,13 +6,13 @@ namespace FinanceTracker.Data;
 
 public partial class BudgetFlowContext : DbContext
 {
-    private readonly IConfiguration _configuration;
-    private readonly string conn;
-    public BudgetFlowContext(DbContextOptions<BudgetFlowContext> options, IConfiguration configuration)
+    public BudgetFlowContext()
+    {
+    }
+
+    public BudgetFlowContext(DbContextOptions<BudgetFlowContext> options)
         : base(options)
     {
-        _configuration = configuration;
-        conn = _configuration.GetConnectionString("BudgetFlow");
     }
 
     public virtual DbSet<Budget> Budgets { get; set; }
@@ -20,7 +20,7 @@ public partial class BudgetFlowContext : DbContext
     public virtual DbSet<Category> Categories { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer(conn);
+        => optionsBuilder.UseSqlServer("Name=ConnectionStrings:BudgetFlow");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -32,6 +32,8 @@ public partial class BudgetFlowContext : DbContext
             entity.Property(e => e.BudgetName)
                 .HasMaxLength(50)
                 .IsUnicode(false);
+            entity.Property(e => e.DateCreated).HasColumnType("date");
+            entity.Property(e => e.DateLastModified).HasColumnType("date");
             entity.Property(e => e.UserId)
                 .HasMaxLength(150)
                 .IsUnicode(false)
