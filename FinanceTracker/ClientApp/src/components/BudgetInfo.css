@@ -16,14 +16,13 @@
 
 .budget-info {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 100vw;
     padding: 10px 35px 10px 35px;
     align-content: center;
     text-align: center;
-    border: 2px solid;
 }
 
 
