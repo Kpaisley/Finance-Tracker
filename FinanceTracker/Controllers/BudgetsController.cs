@@ -37,20 +37,36 @@ namespace FinanceTracker.Controllers
             _context.SaveChanges();
 
             //Return updated budget list 
-            var budgets = _context.Budgets.Where(b => b.UserId.Equals(value.userID)).ToList();
-            return budgets;
+            var newBudgets = _context.Budgets.Where(b => b.UserId.Equals(value.userID)).ToList();
+            return newBudgets;
         }
 
         // PUT api/<BudgetsController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
 
+        //DELETE A BUDGET AND ITS RELATED CATEGORIES FROM THE DATABASE
         // DELETE api/<BudgetsController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IEnumerable<Budget> Delete(int id)
         {
+            //Remove all categories linked to the Budget ID
+            var categories = _context.Categories.Where(c => c.BudgetId == id).ToList();
+            _context.Categories.RemoveRange(categories);
+
+            //Remove the budget
+            var budget = _context.Budgets.FirstOrDefault(b => b.Id == id);
+            var userID = budget.UserId;
+            _context.Budgets.Remove(budget);
+            _context.SaveChanges();
+
+            //return the new list of budgets
+            var newBudgets = _context.Budgets.Where(b => b.UserId.Equals(userID)).ToList();
+            return newBudgets;
+
+            
         }
     }
 }

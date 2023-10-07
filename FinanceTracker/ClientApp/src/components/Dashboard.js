@@ -52,7 +52,7 @@ export const Dashboard = (props) => {
                 <AddBudget userID={user.sub} budgetsLength={budgets.length} setBudgets={setBudgets} setBudgetsLoading={setBudgetsLoading} />
             </div>
 
-            <BudgetInfo budgets={budgets} budgetsLoading={budgetsLoading}></BudgetInfo>
+            <BudgetInfo budgets={budgets} setBudgets={setBudgets} budgetsLoading={budgetsLoading}></BudgetInfo>
         </div>
 
 
