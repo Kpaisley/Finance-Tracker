@@ -2,21 +2,23 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Home } from './components/Home';
 import { Layout } from './components/Layout';
-import { useAuth0 } from "@auth0/auth0-react";
+import { SelectedBudget } from './components/SelectedBudget';
 import './custom.css';
 
 const App = () => {
 
-    const { isLoading } = useAuth0();
 
 
     return (
       <Layout>
             <Routes>
-                <Route path="/" index="true" element={<Home /> }></Route>
+                <Route path="/" index="true" element={<Home />}></Route>
+                <Route path='/user-budget' element={<SelectedBudget /> }></Route>
             </Routes>
       </Layout>
     );
+
+   
   
 }
 
