@@ -1,5 +1,7 @@
 ﻿import { useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
+import { LogoutButton } from "./LogoutButton";
+import './SelectedBudget.css';
 
 
 export const SelectedBudget = (props) => {
@@ -11,11 +13,14 @@ export const SelectedBudget = (props) => {
 
         //CALL API TO POPULATE CATEGORIES BELOW...
 
-        return budget &&(
-            <>
-                <h1>{budget.budgetName}</h1>
-                <Link to="/">Go Back</Link>
-            </>
+        return budget && (
+            <div className="selected-budget">
+                <div className="budget-title">
+                    <LogoutButton />
+                    <h2>{budget.budgetName}</h2>
+                    <Link className='return-link' to='/'>Return</Link>
+                </div>
+            </div>
         );
     }
 
