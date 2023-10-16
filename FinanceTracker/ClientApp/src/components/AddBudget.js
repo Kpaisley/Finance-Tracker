@@ -1,6 +1,4 @@
-﻿import { useEffect } from 'react';
-import { useState } from 'react';
-import './AddBudget.css';
+﻿import './AddBudget.css';
 
 export const AddBudget = (props) => {
 

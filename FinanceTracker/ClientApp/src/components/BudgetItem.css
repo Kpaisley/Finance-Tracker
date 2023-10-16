@@ -2,12 +2,19 @@
 .budget-item {
     display: flex;
     flex-direction: column;
+    background-color: #50020f;
+    color: #DDDDDD;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 18px;
     width: 30%;
     min-width: 275px;
-    padding: 10px;
+    padding: 15px;
     margin: 10px;
+    transition: .1s;
+}
+
+.budget-item:hover {
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 25px;
 }
 
 .budget-item h4 {
@@ -16,7 +23,7 @@
 
 .delete-btn {
     color: red;
-    margin-left: auto;
+    margin: 0 0 5px auto;
     height: 20px;
     width: 20px;
     font-size: large;
@@ -26,4 +33,10 @@
 .delete-btn:hover{
     cursor: pointer;
     font-weight: 700;
+}
+
+.budget-link {
+    margin: 5px;
+    cursor: pointer;
+    padding: 5px;
 }
