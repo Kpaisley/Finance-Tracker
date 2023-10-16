@@ -1,15 +1,14 @@
 ﻿import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
-import './Dashboard.css';
 import { AddBudget } from "./AddBudget";
 import { BudgetInfo } from "./BudgetInfo";
+import { LogoutButton } from "./LogoutButton";
+import './Dashboard.css';
 
 
 
 export const Dashboard = (props) => {
-    const { logout, user } = useAuth0();
+    const { user } = useAuth0();
 
     const [budgets, setBudgets] = useState([]);
     const [budgetsLoading, setBudgetsLoading] = useState(true);
@@ -42,16 +41,12 @@ export const Dashboard = (props) => {
 
         <div id="dashboard" className='noselect'>
             <div className="dashboard-bg">
-                <div className="logout-btn" onClick={() => logout()}>
-                    <FontAwesomeIcon icon={faArrowRightFromBracket} />
-                </div>
-
+                <LogoutButton />
                 <h1 className="title">Welcome to your Dashboard!</h1>
                 <h4 className="budget-count">Total Budgets: {budgets.length} / 3</h4>
                 
                 <AddBudget userID={user.sub} budgetsLength={budgets.length} setBudgets={setBudgets} setBudgetsLoading={setBudgetsLoading} />
             </div>
-
             <BudgetInfo budgets={budgets} setBudgets={setBudgets} budgetsLoading={budgetsLoading}></BudgetInfo>
         </div>
 

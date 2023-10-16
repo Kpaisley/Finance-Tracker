@@ -7,8 +7,6 @@ import './custom.css';
 
 const App = () => {
 
-
-
     return (
       <Layout>
             <Routes>
@@ -17,10 +15,6 @@ const App = () => {
             </Routes>
       </Layout>
     );
-
-   
-  
 }
-
 
 export default App;
