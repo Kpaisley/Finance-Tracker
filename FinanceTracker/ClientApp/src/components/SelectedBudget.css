@@ -8,17 +8,24 @@
 .budget-title {
     background-image: linear-gradient(to right bottom, #000000, #2a0c12, #4b0816, #6c0112, #8b0000);
     min-width: 100vw;
-    min-height: 25vh;
+    max-height: auto;
     padding: 5px 50px 20px;
     text-align: center;
     color: #DDDDDD;
 }
 
 .return-link {
-    color: gray;
+    color: #BBBBBB;
     text-decoration: none;
 }
 
 .return-link:hover {
     color: #DDDDDD;
+    font-weight: 500;
 }
+
+.date-modified {
+    margin: 30px 0 50px 0;
+    color: #CCCCCC;
+}
+

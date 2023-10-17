@@ -5,31 +5,30 @@ export const AddBudget = (props) => {
     //Expand form where user can add a new budget.
     function openBudgetForm(e) {
 
-        //Reset any current text in the input box.
-        const budgetInput = document.querySelector('.form-input');
-        budgetInput.value = '';
-
-        //Reset any current error messages
-        const errorMessage = document.querySelector('#error-msg');
-        errorMessage.innerHTML = '&nbsp;';
-
-        //Open 'Add Budget Form' when 'Add Budget Button' is clicked.
+        //Open 'Budget Form' when 'Add Budget Button' is clicked.
         const form = document.querySelector('.add-budget-form');
         form.classList.toggle('hide');
 
         //Change innerHTML of 'Add Budget Button' depending on the 'Budget Form' being open or closed.
         const button = e.target;
         (!form.classList.contains('hide'))
-            ? button.innerHTML = 'Return'
+            ? button.innerHTML = 'Close'
             : button.innerHTML = 'Add Budget';
 
+        //Reset any current text in the input box.
+        const budgetInput = document.querySelector('.form-input');
+        budgetInput.value = '';
+
+        //Reset any current error messages
+        const errorMessage = document.querySelector('#budget-error-msg');
+        errorMessage.innerHTML = '&nbsp;';
     }
 
     //Create a new budget using BudgetsController.cs
     async function createBudget(e) {
         e.preventDefault();
         const budgetName = e.target[0].value;
-        const errorMessage = document.querySelector('#error-msg');
+        const errorMessage = document.querySelector('#budget-error-msg');
 
         //Validate that a user has a budget name between 1 and 50 characters.
         if (budgetName.length < 1) {
@@ -109,7 +108,7 @@ export const AddBudget = (props) => {
                 <label className="form-label">Budget Name</label>
                 <input className="form-input" type="text" maxLength='50'></input>
                 <input className='submit-btn' type="submit" value="Create Budget"></input>
-                <p id='error-msg'>&nbsp;</p>
+                <p id='budget-error-msg'>&nbsp;</p>
             </form>
             
 
