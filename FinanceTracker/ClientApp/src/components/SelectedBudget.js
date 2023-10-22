@@ -8,6 +8,8 @@ import './SelectedBudget.css';
 export const SelectedBudget = (props) => {
     const location = useLocation();
     const [categories, setCategories] = useState();
+    const [categoriesLoading, setCategoriesLoading] = useState(true);
+    
     //Only render if a user navigated to here by clicking a budget on the dashboard.
     if (location.state) {
         const budget = location.state.budget.budget;
@@ -19,18 +21,31 @@ export const SelectedBudget = (props) => {
         else {
             dateModified = budget.dateLastModified;
         }
-        
-        
 
-        
+        populateCategories();
 
         
         //CALL API TO POPULATE CATEGORIES BELOW...
 
+        async function populateCategories() {
+            
 
+            const userId = budget.userId;
+            const budgetId = budget.id;
+            try {
+                
+                const response = await fetch('categories/' + userId + "/" + budgetId);
+                
+            }
+            catch (error) {
+                console.log(error);
+            }
+
+            
+        }
 
         
-
+        
 
         return budget && (
             <div className="selected-budget noselect">
