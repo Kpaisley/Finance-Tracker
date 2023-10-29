@@ -1,4 +1,4 @@
-﻿import { Link, useNavigate } from 'react-router-dom';
+﻿import { useNavigate } from 'react-router-dom';
 import './BudgetItem.css';
 
 export const BudgetItem = (props) => {
@@ -41,7 +41,6 @@ export const BudgetItem = (props) => {
                 <div>{dateCreated.slice(0, 10)}</div>
 
 
-                {/*<Link to='/user-budget' state={{ budget: { budget } }}>View More</Link>*/}
             </div>
              
             

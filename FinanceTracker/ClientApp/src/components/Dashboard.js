@@ -22,6 +22,8 @@ export const Dashboard = (props) => {
             const data = await response.json();
             setBudgets(data);
             setBudgetsLoading(false);
+
+
         }
         catch (error) {
             console.log(error.message);
@@ -30,8 +32,10 @@ export const Dashboard = (props) => {
     }
 
     useEffect(() => {
-        populateBudgets(user.sub)
+        populateBudgets(user.sub);
     }, []);
+
+    
 
 
     

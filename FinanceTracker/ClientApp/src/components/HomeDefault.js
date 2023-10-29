@@ -1,5 +1,4 @@
 ﻿import { useAuth0 } from "@auth0/auth0-react";
-import { Dashboard } from "./Dashboard";
 import './HomeDefault.css';
 
 export const HomeDefault = (props) => {

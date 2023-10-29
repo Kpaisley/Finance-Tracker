@@ -17,3 +17,5 @@ public partial class Budget
 
     public virtual ICollection<Category> Categories { get; set; } = new List<Category>();
 }
+
+

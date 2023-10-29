@@ -7,7 +7,7 @@ import './SelectedBudget.css';
 
 export const SelectedBudget = (props) => {
     const location = useLocation();
-    const [categories, setCategories] = useState();
+    const [categories, setCategories] = useState([]);
     const [categoriesLoading, setCategoriesLoading] = useState(true);
     
     //Only render if a user navigated to here by clicking a budget on the dashboard.
@@ -24,18 +24,17 @@ export const SelectedBudget = (props) => {
 
         populateCategories();
 
-        
-        //CALL API TO POPULATE CATEGORIES BELOW...
 
         async function populateCategories() {
             
-
             const userId = budget.userId;
             const budgetId = budget.id;
             try {
                 
                 const response = await fetch('categories/' + userId + "/" + budgetId);
-                
+                const data = await response.json();
+                setCategories(data);
+                setCategoriesLoading(false);
             }
             catch (error) {
                 console.log(error);
@@ -62,7 +61,7 @@ export const SelectedBudget = (props) => {
                    <AddCategory />
 
                 </div>
-
+                {categories.length}
                 
 
             </div>
