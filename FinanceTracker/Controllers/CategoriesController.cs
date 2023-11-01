@@ -17,41 +17,43 @@ namespace FinanceTracker.Controllers
             _context = context;
         }
 
-
+        //POPULATE A USERS CATEGORIES FOR THEIR SELECTED BUDGET
         // GET api/<CategoriesController>/5
         [HttpGet("{userId}/{budgetId}")]
         public IEnumerable<Category> Get(string userId, int budgetId)
         {
-            //INITIALIZE LIST OF EMPTY CATEGORIES
+            //INITIALIZE EMPTY ARRAY OF CATEGORIES
             var budgetCategories = new List<Category>();
 
-            //RETURN ALL BUDGETS BELONGING TO A USER TO ENSURE THE SELECTED BUDGET BELONGS TO THE USER
-            var userBudgets = _context.Budgets.Where(b => b.UserId.Equals(userId)).ToList();
-            
+            //INITIALIZE USER BUDGET
+            var userBudget = _context.Budgets.FirstOrDefault(b => b.UserId.Equals(userId) && b.Id == budgetId);
 
-            //LOOP THROUGH ALL USER BUDGETS AND GRAB ONTO THEIR SELECTED BUDGET
-            foreach (var b in userBudgets)
+            if (userBudget == null)
             {
-                if (b.Id == budgetId)
+                throw new Exception();
+            }
+            else
+            {
+                //LOAD ALL CATEGORIES ASSOCIATED TO THE USER BUDGET
+                _context.Entry(userBudget).Collection(b => b.Categories).Load();
+                
+                foreach (Category c in userBudget.Categories)
                 {
-                    //LOAD ALL CATEGORIES RELATED TO THE USERS SELECTED BUDGET
-                    _context.Entry(b).Collection(p => p.Categories).Load();
-                    foreach (Category c in b.Categories)
+                    //ADD ALL CATEGORIES ASSOCIATED TO THE USER BUDGET INTO BudgetCategories ARRAY
+                    Category categoryToAdd = new Category
                     {
-                        Category categoryToAdd = new Category { Id = c.Id, BudgetId = c.BudgetId, CategoryName = c.CategoryName,
-                                                                CategoryTotal = c.CategoryTotal };
-                        budgetCategories.Add(categoryToAdd);
-                    }
-                    break;
+                        Id = c.Id,
+                        BudgetId = c.BudgetId,
+                        CategoryName = c.CategoryName,
+                        CategoryTotal = c.CategoryTotal
+                    };
+
+                    budgetCategories.Add(categoryToAdd);
                 }
             }
 
             return budgetCategories;
 
-
-
-
-            
 
         }
 

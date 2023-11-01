@@ -27,6 +27,7 @@ export const SelectedBudget = (props) => {
                 const data = await response.json();
                 setCategories(data);
                 setCategoriesLoading(false);
+                console.log(data);
             }
             catch (error) {
                 console.log(error);
