@@ -1,4 +1,5 @@
 ﻿using FinanceTracker.Data;
+using FinanceTracker.Data.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -59,8 +60,30 @@ namespace FinanceTracker.Controllers
 
         // POST api/<CategoriesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] AddCategoryDTO category)
         {
+            //INITIALIZE USER BUDGET THAT THE CATEGORY WILL BE ADDED TO
+            var userBudget = _context.Budgets.FirstOrDefault(b => b.UserId.Equals(category.userId) && b.Id == category.budgetId);
+
+            if (userBudget == null)
+            {
+                throw new Exception();
+            }
+            else
+            {
+                //MODIFY THE DateLastModified FIELD FOR THE USER'S SELECTED BUDGET
+                userBudget.DateLastModified = DateTime.Now.Date;
+
+                //CREATE NEW CATEGORY TO SAVE TO THE DATABASE
+                var categoryToAdd = new Category { 
+                    BudgetId = userBudget.Id, 
+                    CategoryName = category.categoryName, 
+                    CategoryTotal = category.categoryLimit 
+                };
+                _context.Categories.Add(categoryToAdd);
+                _context.SaveChanges();
+            }
+            
         }
 
         // PUT api/<CategoriesController>/5

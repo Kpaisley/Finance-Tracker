@@ -11,25 +11,28 @@ export const SelectedBudget = () => {
     const [categoriesLoading, setCategoriesLoading] = useState(true);
 
 
+    
+
+    
+
     //Populate Categories from CategoriesController.
     async function populateCategories() {
 
         const userId = budget.userId;
         const budgetId = budget.id;
-        try {
 
+        try {
+            setCategoriesLoading(true);
             const response = await fetch('categories/' + userId + "/" + budgetId);
             const data = await response.json();
             setCategories(data);
             setCategoriesLoading(false);
-            console.log(data);
         }
         catch (error) {
             console.log(error);
         }
-
-
     }
+
 
     useEffect(() => {
         populateCategories();
@@ -58,7 +61,7 @@ export const SelectedBudget = () => {
                 </div>
 
 
-                <AddCategory />
+                <AddCategory budget={budget} populateCategories={populateCategories} />
 
             </div>
             {categories.length}
