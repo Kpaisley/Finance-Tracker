@@ -1,6 +1,7 @@
 ﻿import { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { AddCategory } from './AddCategory';
+import { CategoryInfo } from './CategoryInfo';
 import { LogoutButton } from "./LogoutButton";
 import './SelectedBudget.css';
 
@@ -11,9 +12,7 @@ export const SelectedBudget = () => {
     const [categoriesLoading, setCategoriesLoading] = useState(true);
 
 
-    
 
-    
 
     //Populate Categories from CategoriesController.
     async function populateCategories() {
@@ -47,6 +46,8 @@ export const SelectedBudget = () => {
 
 
     const budget = location.state.budget.budget;
+    
+
 
     return budget && (
         
@@ -64,8 +65,8 @@ export const SelectedBudget = () => {
                 <AddCategory budget={budget} populateCategories={populateCategories} />
 
             </div>
-            {categories.length}
 
+            <CategoryInfo categories={categories} categoriesLoading={categoriesLoading} />
 
         </div>
     );

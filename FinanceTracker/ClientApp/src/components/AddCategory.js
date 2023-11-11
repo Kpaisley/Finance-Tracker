@@ -56,6 +56,8 @@ export const AddCategory = (props) => {
         if (!categoryLimit || !categoryName) {
             errorMessage.innerHTML = "Ensure all fields are filled out."
         }
+
+        //Reset any error messages and send params to CategoriesController to create a new Category.
         else {
             
             errorMessage.innerHTML = "&nbsp;"

@@ -28,7 +28,7 @@
 .add-budget-form {
     display: flex;
     flex-direction: column;
-    transition: 0.3s;
+    transition: .3s;
     max-height: 50vh;
     width: 55vw;
     padding-top: 20px;

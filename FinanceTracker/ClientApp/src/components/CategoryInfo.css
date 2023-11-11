@@ -1,0 +1,22 @@
+﻿
+.no-categories {
+    width: auto;
+    padding: 15px;
+    margin-top: 25px;
+    text-align: center;
+}
+
+.no-categories div {
+    margin-top: 50px;
+    text-decoration: underline;
+    font-weight: 700;
+}
+
+.category-info {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    text-align: center;
+    padding: 10px 35px 10px 35px;
+
+}

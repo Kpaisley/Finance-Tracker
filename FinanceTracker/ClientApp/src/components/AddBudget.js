@@ -59,8 +59,6 @@ export const AddBudget = (props) => {
                 const data = await response.json();
                 props.setBudgets(data);
                 props.setBudgetsLoading(false);
-                alert('Budget Created Successfully!');
-                
             }
             catch (error) {
                 console.log(error.message);

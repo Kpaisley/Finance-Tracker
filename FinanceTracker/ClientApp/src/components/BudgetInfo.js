@@ -3,7 +3,7 @@ import { BudgetItem } from './BudgetItem';
 
 export const BudgetInfo = (props) => {
 
-    //Return loader icon if budgetsLoading == true.
+    //Return loader icon if budgets are populating.
     if (props.budgetsLoading) {
         return (
             <div className="loader"><div></div><div></div><div></div><div></div></div>
@@ -14,7 +14,7 @@ export const BudgetInfo = (props) => {
     else if (props.budgets.length <= 0) {
         return (
             <div className="no-budgets">
-                <h4>You currently have <u>0</u> budgets stored in the database.</h4>
+                <h4>You currently have <strong>0</strong> budgets stored in the database.</h4>
                 <div>Create a budget by clicking on 'Add Budget' above.</div>
             </div>
         );
