@@ -1,4 +1,5 @@
 ﻿import './CategoryInfo.css';
+import { CategoryItem } from './CategoryItem';
 
 export const CategoryInfo = (props) => {
 
@@ -24,10 +25,10 @@ export const CategoryInfo = (props) => {
         return (
             <div className="category-info">
                 {
-                    props.categories.map(category => 
-                        <h1 key={category.id}>{category.categoryName}</h1>
+
+                    props.categories.map(category =>
+                        <CategoryItem key={category.id} category={category} />
                     )
-                    //<CategoryItem key={category.id} category={category} />
                 }
 
             </div>

@@ -1,16 +1,17 @@
 ﻿import { useEffect, useState } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AddCategory } from './AddCategory';
 import { CategoryInfo } from './CategoryInfo';
+import { CategoryPurchaseForm } from './CategoryPurchaseForm';
 import { LogoutButton } from "./LogoutButton";
 import './SelectedBudget.css';
 
 
-export const SelectedBudget = () => {
-    const location = useLocation();
+export const SelectedBudget = (props) => {
+    const budget = props.budget;
     const [categories, setCategories] = useState([]);
     const [categoriesLoading, setCategoriesLoading] = useState(true);
-
+    const [changeView, setChangeView] = useState(false);
 
 
 
@@ -35,22 +36,27 @@ export const SelectedBudget = () => {
 
     useEffect(() => {
         populateCategories();
-    }, [])
+    }, []);
 
-    //Return user to the dashboard if URL is manually typed in.
-    if (!location.state) {
-        return (
-            window.location.href = ""
-        );
+    //Change user view depending on the state of changeUserView.
+    function changeUserView() {
+        setChangeView(!changeView);
     }
 
+    //Change the text inside 'manage-categories-btn' depending on what the user is viewing.
+    let buttonText = !changeView
+        ? "Manage Categories"
+        : "Add Purchase";
 
-    const budget = location.state.budget.budget;
-    
+    //Display either <CategoryInfo /> or <CategoryPurchaseForm /> depending on state of viewManageCategories
+    let contents = changeView
+        ? <CategoryInfo categories={categories} categoriesLoading={categoriesLoading} />
+        : <CategoryPurchaseForm />
 
 
-    return budget && (
-        
+
+    return (
+
         <div className="selected-budget noselect">
             <div className="budget-title">
                 <LogoutButton />
@@ -63,10 +69,11 @@ export const SelectedBudget = () => {
 
 
                 <AddCategory budget={budget} populateCategories={populateCategories} />
+                <p id='manage-categories-btn' onClick={() => changeUserView()}>{buttonText}</p>
 
             </div>
 
-            <CategoryInfo categories={categories} categoriesLoading={categoriesLoading} />
+            {contents}
 
         </div>
     );

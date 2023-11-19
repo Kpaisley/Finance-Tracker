@@ -29,3 +29,15 @@
     color: #CCCCCC;
 }
 
+#manage-categories-btn {
+    color: #CCCCCC;
+    width: fit-content;
+    margin: auto;
+    padding: 5px;
+    cursor: pointer;
+}
+
+#manage-categories-btn:hover {
+    color: #FFFFFF;
+    font-weight: 500;
+}

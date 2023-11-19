@@ -95,7 +95,6 @@ export const AddCategory = (props) => {
 
     return (
         <div id="add-category">
-            <p className="add-category-btn" onClick={(e) => openCategoryForm(e) }>Add Category</p>
 
             <form className="add-category-form hide" onSubmit={(e) => createCategory(e) } >
                 <label className="form-label">Category Name</label>
@@ -107,6 +106,8 @@ export const AddCategory = (props) => {
                 <input className='submit-btn' type="submit" value="Add Category"></input>
                 <p id='category-error-msg'>&nbsp;</p>
             </form>
+
+            <p className="add-category-btn" onClick={(e) => openCategoryForm(e) }>Add Category</p>
         </div>
 
     );
