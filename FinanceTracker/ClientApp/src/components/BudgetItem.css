@@ -19,6 +19,8 @@
 
 .budget-item h4 {
     margin-bottom: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .delete-btn {

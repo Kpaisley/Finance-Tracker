@@ -14,7 +14,7 @@ export const CategoryInfo = (props) => {
     else if (props.categories.length <= 0) {
         return (
             <div className="no-categories">
-                <h4>You currently have <strong>{props.categories.length}</strong> categories associated with this budget.</h4>
+                <h3>You currently have <strong>{props.categories.length}</strong> categories associated with this budget.</h3>
                 <div>Create a category by clicking on 'Add Category' above.</div>
             </div>
         );
@@ -24,6 +24,7 @@ export const CategoryInfo = (props) => {
     else
         return (
             <div className="category-info">
+                <h2>Manage your Categories Below!</h2>
                 {
 
                     props.categories.map(category =>

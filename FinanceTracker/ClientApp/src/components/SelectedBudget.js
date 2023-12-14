@@ -60,8 +60,8 @@ export const SelectedBudget = (props) => {
         <div className="selected-budget noselect">
             <div className="budget-title">
                 <LogoutButton />
-                <h2>{budget.budgetName}</h2>
-                <Link className='return-link' to='/'>Return</Link>
+                <h1>{budget.budgetName}</h1>
+                <Link className='return-link' to='/'>Go Back</Link>
                 <div className='date-modified'>
                     <u>Last Modified</u>
                     <p>{budget.dateLastModified.slice(0, 10)}</p>

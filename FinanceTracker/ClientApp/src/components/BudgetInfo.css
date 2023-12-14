@@ -2,17 +2,17 @@
 .no-budgets {
     width: auto;
     padding: 15px;
-    margin-top: 25px;
+    margin-top: 30px;
     text-align: center;
+    color: #262626;
 }
 
 .no-budgets div {
     margin-top: 50px;
     text-decoration: underline;
     font-weight: 700;
+    font-size: 20px;
 }
-
-
 
 .budget-info {
     display: flex;
