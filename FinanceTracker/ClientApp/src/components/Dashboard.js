@@ -15,9 +15,11 @@ export const Dashboard = (props) => {
 
    
     //Populate a users budget from BudgetController.cs
-    async function populateBudgets(userID) {
+    async function populateBudgets() {
+        var userID = user.sub;
 
         try {
+            setBudgetsLoading(true);
             const response = await fetch('budgets/' + userID);
             const data = await response.json();
             setBudgets(data);
@@ -32,7 +34,7 @@ export const Dashboard = (props) => {
     }
 
     useEffect(() => {
-        populateBudgets(user.sub);
+        populateBudgets();
     }, []);
 
 
@@ -46,7 +48,7 @@ export const Dashboard = (props) => {
                 
                 <AddBudget userID={user.sub} budgetsLength={budgets.length} setBudgets={setBudgets} setBudgetsLoading={setBudgetsLoading} />
             </div>
-            <BudgetInfo budgets={budgets} setBudgets={setBudgets} budgetsLoading={budgetsLoading}></BudgetInfo>
+            <BudgetInfo budgets={budgets} budgetsLoading={budgetsLoading} populateBudgets={populateBudgets}></BudgetInfo>
         </div>
 
 

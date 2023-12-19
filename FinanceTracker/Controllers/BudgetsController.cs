@@ -50,23 +50,24 @@ namespace FinanceTracker.Controllers
 
         //DELETE A BUDGET AND ITS RELATED CATEGORIES FROM THE DATABASE
         // DELETE api/<BudgetsController>/5
-        [HttpDelete("{id}")]
-        public IEnumerable<Budget> Delete(int id)
+        [HttpDelete]
+        public void Delete([FromBody] DeleteBudgetDTO budget)
         {
+            var budgetToDelete = _context.Budgets.FirstOrDefault(b => b.Id == budget.budgetId && b.UserId == budget.userId);
+
+            //Verify that the budget belongs to the user
+            if (budgetToDelete == null) {
+                throw new Exception();
+            }
+
+        
             //Remove all categories linked to the Budget ID
-            var categories = _context.Categories.Where(c => c.BudgetId == id).ToList();
-            _context.Categories.RemoveRange(categories);
+            var categoriesToDelete = _context.Categories.Where(c => c.BudgetId == budgetToDelete.Id).ToList();
+            _context.Categories.RemoveRange(categoriesToDelete);
 
             //Remove the budget
-            var budget = _context.Budgets.FirstOrDefault(b => b.Id == id);
-            var userID = budget.UserId;
-            _context.Budgets.Remove(budget);
+            _context.Budgets.Remove(budgetToDelete);
             _context.SaveChanges();
-
-            //return the new list of budgets
-            var newBudgets = _context.Budgets.Where(b => b.UserId.Equals(userID)).ToList();
-            return newBudgets;
-
             
         }
     }

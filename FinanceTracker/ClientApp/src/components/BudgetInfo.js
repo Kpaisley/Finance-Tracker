@@ -27,7 +27,7 @@ export const BudgetInfo = (props) => {
                 {
 
                     props.budgets.map(budget =>
-                        <BudgetItem key={budget.id} budget={budget} budgetID={budget.id} setBudgets={props.setBudgets} />
+                        <BudgetItem key={budget.id} budget={budget} populateBudgets={props.populateBudgets} />
                     )
                 }
             </div>
