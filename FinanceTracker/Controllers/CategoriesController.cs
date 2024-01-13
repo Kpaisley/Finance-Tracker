@@ -37,7 +37,7 @@ namespace FinanceTracker.Controllers
             {
                 //LOAD ALL CATEGORIES ASSOCIATED TO THE USER BUDGET
                 _context.Entry(userBudget).Collection(b => b.Categories).Load();
-                
+
                 foreach (Category c in userBudget.Categories)
                 {
                     //ADD ALL CATEGORIES ASSOCIATED TO THE USER BUDGET INTO BudgetCategories ARRAY
@@ -75,15 +75,15 @@ namespace FinanceTracker.Controllers
                 userBudget.DateLastModified = DateTime.Now.Date;
 
                 //CREATE NEW CATEGORY TO SAVE TO THE DATABASE
-                var categoryToAdd = new Category { 
-                    BudgetId = userBudget.Id, 
-                    CategoryName = category.categoryName, 
-                    CategoryTotal = category.categoryLimit 
+                var categoryToAdd = new Category {
+                    BudgetId = userBudget.Id,
+                    CategoryName = category.categoryName,
+                    CategoryTotal = category.categoryLimit
                 };
                 _context.Categories.Add(categoryToAdd);
                 _context.SaveChanges();
             }
-            
+
         }
 
         // PUT api/<CategoriesController>/5
@@ -93,9 +93,26 @@ namespace FinanceTracker.Controllers
         }
 
         // DELETE api/<CategoriesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public void Delete([FromBody] DeleteCategoryDTO category)
         {
+            var userBudget = _context.Budgets.FirstOrDefault(b => b.UserId.Equals(category.userId) && b.Id == category.budgetId);
+
+            if (userBudget == null)
+            {
+                throw new Exception();
+            }
+            else
+            {
+                var categoryToDelete = _context.Categories.FirstOrDefault(c => c.Id == category.categoryId && c.BudgetId == category.budgetId);
+                if (categoryToDelete != null)
+                {
+                    _context.Categories.Remove(categoryToDelete);
+                    _context.SaveChanges();
+                }
+
+            }
+
         }
     }
 }

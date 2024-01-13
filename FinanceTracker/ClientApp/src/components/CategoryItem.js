@@ -3,13 +3,28 @@ import { faDeleteLeft, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import './CategoryItem.css';
 
 export const CategoryItem = (props) => {
+    
 
-    const deleteCategoryItem = () => {
-        console.log(props.category)
-        const itemToDelete = {
-            userId: 5,
-            id: props.category.id,
+    async function deleteCategoryItem() {
+
+        const categoryToDelete = {
+            userId: props.userId,
+            categoryId: props.category.id,
             budgetId: props.category.budgetId
+        }
+
+        const requestOptions = {
+            method: 'DELETE',
+            headers: { 'Content-Type': "application/json" },
+            body: JSON.stringify(categoryToDelete)
+        }
+
+        try {
+            await fetch('categories', requestOptions)
+            props.populateCategories();
+        }
+        catch (error) {
+            console.log(error);
         }
     }
     

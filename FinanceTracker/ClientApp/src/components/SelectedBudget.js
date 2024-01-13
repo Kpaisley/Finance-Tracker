@@ -9,6 +9,7 @@ import './SelectedBudget.css';
 
 export const SelectedBudget = (props) => {
     const budget = props.budget;
+    const userId = props.budget.userId;
     const [categories, setCategories] = useState([]);
     const [categoriesLoading, setCategoriesLoading] = useState(true);
     const [changeView, setChangeView] = useState(false);
@@ -18,11 +19,10 @@ export const SelectedBudget = (props) => {
     //Populate Categories from CategoriesController.
     async function populateCategories() {
 
-        const userId = budget.userId;
+        
         const budgetId = budget.id;
 
         try {
-            setCategoriesLoading(true);
             const response = await fetch('categories/' + userId + "/" + budgetId);
             const data = await response.json();
             setCategories(data);
@@ -50,7 +50,7 @@ export const SelectedBudget = (props) => {
 
     //Display either <CategoryInfo /> or <CategoryPurchaseForm /> depending on state of viewManageCategories
     let contents = changeView
-        ? <CategoryInfo categories={categories} categoriesLoading={categoriesLoading} />
+        ? <CategoryInfo categories={categories} categoriesLoading={categoriesLoading} userId={userId} populateCategories={populateCategories} />
         : <CategoryPurchaseForm />
 
 

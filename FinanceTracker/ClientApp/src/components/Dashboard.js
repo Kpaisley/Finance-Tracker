@@ -13,7 +13,7 @@ export const Dashboard = (props) => {
     const [budgets, setBudgets] = useState([]);
     const [budgetsLoading, setBudgetsLoading] = useState(true);
 
-   
+
     //Populate a users budget from BudgetController.cs
     async function populateBudgets() {
         var userID = user.sub;

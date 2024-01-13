@@ -4,7 +4,7 @@ import { HomeDefault } from "./HomeDefault";
 
 export const Home = (props) => {
 
-    const { isAuthenticated, isLoading, user } = useAuth0();
+    const { isAuthenticated, isLoading } = useAuth0();
 
     //Return login screen if not logged in.
     if (!isAuthenticated && !isLoading) {
