@@ -16,6 +16,7 @@ export const AddBudget = (props) => {
         //Reset any current error messages
         const errorMessage = document.querySelector('#budget-error-msg');
         errorMessage.innerHTML = '&nbsp;';
+        errorMessage.classList.add('hide');
     }
 
     //Close form where user can add a new budget.
@@ -45,10 +46,12 @@ export const AddBudget = (props) => {
         //Validate that a user has a budget name between 1 and 50 characters.
         if (budgetName.length < 1) {
             errorMessage.innerHTML = 'Budget Name must be 1 or more characters.'
+            errorMessage.classList.remove('hide');
             return;
         }
         else if (budgetName.length > 50) {
             errorMessage.innerHTML = 'Budget Name must be less than 50 characters.'
+            errorMessage.classList.remove('hide');
             return;
         }
 
@@ -78,13 +81,10 @@ export const AddBudget = (props) => {
             }
         }
 
-        //Close 'Add Budget Form' when a budget is successfully created.
-        const form = document.querySelector('.add-budget-form');
-        form.classList.toggle('hide');
+        //Close 'Add Budget' form when a budget is successfully created.
+        closeBudgetForm();
 
-        
-
-        //Display 'Add Budget Button' when a budget is successfully created.
+        //Display 'Add Budget' button when a budget is successfully created.
         const button = document.querySelector('.add-budget-btn');
         button.classList.remove('hidden');
     }
@@ -113,7 +113,7 @@ export const AddBudget = (props) => {
                 <label className="form-label">Budget Name</label>
                 <input className="form-input" type="text" maxLength='50'></input>
                 <input className='submit-btn' type="submit" value="Create Budget"></input>
-                <p id='budget-error-msg'>&nbsp;</p>
+                <p id='budget-error-msg' className='hide'>&nbsp;</p>
                 <p className='close-budget-btn' onClick={() => closeBudgetForm() }>Close</p>
             </form>
             

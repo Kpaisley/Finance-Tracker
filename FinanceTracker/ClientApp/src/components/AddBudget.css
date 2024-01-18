@@ -28,7 +28,7 @@
 .close-budget-btn {
     color: #CCCCCC;
     padding: 2px 5px;
-    margin: auto auto 10px auto;
+    margin: 12px auto 10px auto;
     cursor: pointer;
 }
 
@@ -73,7 +73,7 @@
 
 #budget-error-msg {
     color: #FFFFFF;
-    margin: 5px auto 5px auto;
+    margin: 10px auto auto auto;
 }
 
 
