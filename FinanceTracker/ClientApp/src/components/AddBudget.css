@@ -25,6 +25,18 @@
     font-weight: 500;
 }
 
+.close-budget-btn {
+    color: #CCCCCC;
+    padding: 2px 5px;
+    margin: auto auto 10px auto;
+    cursor: pointer;
+}
+
+.close-budget-btn:hover {
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
 .add-budget-form {
     display: flex;
     flex-direction: column;
@@ -54,8 +66,13 @@
     max-height: 0;
 }
 
+.hidden {
+    opacity: 0;
+    cursor: default;
+}
+
 #budget-error-msg {
-    color: #CCCCCC;
+    color: #FFFFFF;
     margin: 5px auto 5px auto;
 }
 

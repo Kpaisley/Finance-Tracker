@@ -58,6 +58,7 @@ namespace FinanceTracker.Controllers
 
         }
 
+        //ADD A CATEGORY TO A USER'S BUDGET
         // POST api/<CategoriesController>
         [HttpPost]
         public void Post([FromBody] AddCategoryDTO category)
@@ -86,12 +87,14 @@ namespace FinanceTracker.Controllers
 
         }
 
+        //MODIFY A CATEGORY FROM A USER'S BUDGET
         // PUT api/<CategoriesController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
+        //DELETE A CATEGORY FROM A USER'S BUDGET
         // DELETE api/<CategoriesController>/5
         [HttpDelete]
         public void Delete([FromBody] DeleteCategoryDTO category)

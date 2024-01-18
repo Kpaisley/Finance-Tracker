@@ -5,23 +5,35 @@ export const AddBudget = (props) => {
     //Expand form where user can add a new budget.
     function openBudgetForm(e) {
 
-        //Open 'Budget Form' when 'Add Budget Button' is clicked.
+        //Open 'Budget Form' when 'Add Budget' button is clicked.
         const form = document.querySelector('.add-budget-form');
-        form.classList.toggle('hide');
-
-        //Change innerHTML of 'Add Budget Button' depending on the 'Budget Form' being open or closed.
+        form.classList.remove('hide');
+        
+        //Remove 'Add Budget' button from the user's view.
         const button = e.target;
-        (!form.classList.contains('hide'))
-            ? button.innerHTML = 'Close'
-            : button.innerHTML = 'Add Budget';
+        button.classList.add('hidden');
+
+        //Reset any current error messages
+        const errorMessage = document.querySelector('#budget-error-msg');
+        errorMessage.innerHTML = '&nbsp;';
+    }
+
+    //Close form where user can add a new budget.
+    function closeBudgetForm(e) {
+
+        //Close 'Budget Form' when 'Close' button is clicked.
+        const form = document.querySelector('.add-budget-form');
+        form.classList.add('hide');
 
         //Reset any current text in the input box.
         const budgetInput = document.querySelector('.form-input');
         budgetInput.value = '';
 
-        //Reset any current error messages
-        const errorMessage = document.querySelector('#budget-error-msg');
-        errorMessage.innerHTML = '&nbsp;';
+        //Return 'Add Budget' button to the user's view.
+        const button = document.querySelector('.add-budget-btn');
+        button.classList.remove('hidden');
+
+
     }
 
     //Create a new budget using BudgetsController.cs
@@ -74,12 +86,7 @@ export const AddBudget = (props) => {
 
         //Display 'Add Budget Button' when a budget is successfully created.
         const button = document.querySelector('.add-budget-btn');
-        
-        
-        (form.classList.contains('hide'))
-            ? button.innerHTML = 'Add Budget'
-            : button.innerHTML = "Return"
-        
+        button.classList.remove('hidden');
     }
 
    
@@ -107,6 +114,7 @@ export const AddBudget = (props) => {
                 <input className="form-input" type="text" maxLength='50'></input>
                 <input className='submit-btn' type="submit" value="Create Budget"></input>
                 <p id='budget-error-msg'>&nbsp;</p>
+                <p className='close-budget-btn' onClick={() => closeBudgetForm() }>Close</p>
             </form>
             
 
