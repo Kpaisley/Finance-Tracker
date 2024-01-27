@@ -31,11 +31,22 @@ namespace FinanceTracker.Controllers
         [HttpPost]
         public IEnumerable<Budget> Post([FromBody] AddBudgetDTO value)
         {
-            //Create and save new budget to database
-            Budget budgetToAdd = new Budget { UserId = value.userID, BudgetName = value.budgetName,
-                                                DateCreated = DateTime.Now.Date, DateLastModified = DateTime.Now.Date };
-            _context.Budgets.Add(budgetToAdd);
-            _context.SaveChanges();
+            var userBudgets = _context.Budgets.Where(b => b.UserId.Equals(value.userID)).ToList();
+
+            //Verify that user has a maximum of 3 budgets
+            if (userBudgets.Count <= 2)
+            {
+                //Create and save new budget to database
+                Budget budgetToAdd = new Budget
+                {
+                    UserId = value.userID,
+                    BudgetName = value.budgetName,
+                    DateCreated = DateTime.Now.Date,
+                    DateLastModified = DateTime.Now.Date
+                };
+                _context.Budgets.Add(budgetToAdd);
+                _context.SaveChanges();
+            }
 
             //Return updated budget list 
             var newBudgets = _context.Budgets.Where(b => b.UserId.Equals(value.userID)).ToList();
