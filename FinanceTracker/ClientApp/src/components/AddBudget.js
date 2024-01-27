@@ -103,8 +103,8 @@ export const AddBudget = (props) => {
         );
     }
 
-    //Render if the user has less than the maximum number of budgets stored.
-    return (
+    //Render if the user has less than the maximum number of budgets stored and budgetsLoading == false.
+    return !props.budgetsLoading && (
 
         <div id="add-budget">
             <p className="add-budget-btn" onClick={(e) => openBudgetForm(e)}>Add Budget</p>

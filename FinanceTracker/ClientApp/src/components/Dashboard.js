@@ -46,7 +46,7 @@ export const Dashboard = (props) => {
                 <h1 className="title">Welcome to your Dashboard!</h1>
                 <h4 className="budget-count">Total Budgets: {budgets.length} / 3</h4>
                 
-                <AddBudget userID={user.sub} budgetsLength={budgets.length} setBudgets={setBudgets} setBudgetsLoading={setBudgetsLoading} />
+                <AddBudget userID={user.sub} budgetsLength={budgets.length} setBudgets={setBudgets} setBudgetsLoading={setBudgetsLoading} budgetsLoading={budgetsLoading} />
             </div>
             <BudgetInfo budgets={budgets} budgetsLoading={budgetsLoading} populateBudgets={populateBudgets}></BudgetInfo>
         </div>
