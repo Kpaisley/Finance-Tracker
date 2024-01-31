@@ -9,7 +9,6 @@
 .dashboard-bg {
     background-image: linear-gradient(to right bottom, #000000, #2a0c12, #4b0816, #6c0112, #8b0000);
     min-width: 100vw;
-    max-height: auto;
     padding: 5px 50px;
 }
 

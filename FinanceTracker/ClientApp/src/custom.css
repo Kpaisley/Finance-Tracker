@@ -1,3 +1,13 @@
+
+html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+html::-webkit-scrollbar {
+     display: none;
+}
+
 /* Provide sufficient contrast against white background */
 a {
   color: #0366d6;
@@ -26,8 +36,8 @@ code {
                           supported by Chrome, Edge, Opera and Firefox */
 }
 
-    /*LOADER ICON*/
-    .loader {
+/*LOADER ICON*/
+.loader {
     display: inline-block;
     position: relative;
     width: 80px;
