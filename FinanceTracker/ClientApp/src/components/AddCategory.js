@@ -76,7 +76,7 @@ export const AddCategory = (props) => {
             }
 
             try {
-                const response = await fetch('/categories', requestOptions);
+                await fetch('/categories', requestOptions);
                 closeCategoryForm();
                 props.populateCategories();
             }

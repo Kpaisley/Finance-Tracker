@@ -20,7 +20,7 @@ export const AddBudget = (props) => {
     }
 
     //Close form where user can add a new budget.
-    function closeBudgetForm(e) {
+    function closeBudgetForm() {
 
         //Close 'Budget Form' when 'Close' button is clicked.
         const form = document.querySelector('.add-budget-form');
@@ -80,13 +80,6 @@ export const AddBudget = (props) => {
                 props.setBudgetsLoading(false);
             }
         }
-
-        //Close 'Add Budget' form when a budget is successfully created.
-        closeBudgetForm();
-
-        //Display 'Add Budget' button when a budget is successfully created.
-        const button = document.querySelector('.add-budget-btn');
-        button.classList.remove('hidden');
     }
 
    
