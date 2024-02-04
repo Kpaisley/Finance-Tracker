@@ -10,8 +10,6 @@ export const CategoryItem = (props) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    console.log(open);
-
     async function deleteCategoryItem() {
 
         const categoryToDelete = {

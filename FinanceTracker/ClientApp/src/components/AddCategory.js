@@ -56,10 +56,14 @@ export const AddCategory = (props) => {
         if (!categoryLimit || !categoryName) {
             errorMessage.innerHTML = "Ensure all fields are filled out."
         }
+        
 
-        //Reset any error messages and send params to CategoriesController to create a new Category.
+        //Reset current input values & error messages. Then send params to CategoriesController & create a new Category.
         else {
-            
+            //Reset current input values to prevent creating duplicate Categories.
+            e.target[0].value = "";
+            e.target[1].value = "";
+            //Reset any current error messages.
             errorMessage.innerHTML = "&nbsp;"
 
             const categoryToAdd = {
@@ -87,11 +91,6 @@ export const AddCategory = (props) => {
             
         }
     }
-
-
-
-
-    
 
     return (
         <div id="add-category">

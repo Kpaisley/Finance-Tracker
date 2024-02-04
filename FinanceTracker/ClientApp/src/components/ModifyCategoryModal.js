@@ -23,6 +23,7 @@ export default function ModifyCategoryModal(props) {
                     <Box className="box">
                         
                         <form id="modify-category-form">
+                            <div className="delete-btn" onClick={props.handleClose}>X</div>
                             <h4>Modify your Category!</h4>
                             <label>Category Name</label>
                             <input type="text" placeholder={props.category.categoryName}></input>
