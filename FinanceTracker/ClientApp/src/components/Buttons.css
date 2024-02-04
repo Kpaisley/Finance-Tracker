@@ -1,0 +1,30 @@
+﻿
+.delete-btn {
+    color: red;
+    margin: 0 0 5px auto;
+    height: 20px;
+    width: 20px;
+    font-size: large;
+    font-weight: 600;
+}
+
+.delete-btn:hover{
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.logout-btn {
+    /*color: #CCCCCC;*/
+    color: #8dbbe8;
+    margin: 15px 0 35px auto;
+    font-size: large;
+    max-height: 0;
+    max-width: 0;
+}
+
+.logout-btn:hover {
+    /*color: #FFFFFF;*/
+    color: #1976d2;
+    cursor: pointer;
+    font-size: larger;
+}

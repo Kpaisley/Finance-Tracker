@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AddCategory } from './AddCategory';
 import { CategoryInfo } from './CategoryInfo';
 import { CategoryPurchaseForm } from './CategoryPurchaseForm';
-import { LogoutButton } from "./LogoutButton";
+import { LogoutButton } from './Buttons';
 import './SelectedBudget.css';
 
 

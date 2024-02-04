@@ -1,5 +1,6 @@
 ﻿import { useNavigate } from 'react-router-dom';
 import './BudgetItem.css';
+import { DeleteBudget, DeleteIcon } from './Buttons';
 
 export const BudgetItem = (props) => {
     const budget = props.budget;
@@ -38,7 +39,7 @@ export const BudgetItem = (props) => {
     
     return (
         <div className="budget-item">
-            <div className="delete-btn" onClick={() => deleteBudget()}>X</div>
+            <DeleteIcon action={deleteBudget} />
 
             <div className='budget-link' onClick={() => redirectToBudget() }>
                 <h4>{props.budget.budgetName}</h4>

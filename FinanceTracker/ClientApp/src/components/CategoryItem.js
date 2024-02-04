@@ -44,7 +44,7 @@ export const CategoryItem = (props) => {
                 <span className="delete-icon-bg"></span> {/*Small white background behind the delete button*/}
             </div>
 
-            <ModifyCategoryModal open={open} setOpen={setOpen} handleOpen={handleOpen} handleClose={handleClose} category={props.category} />
+            <ModifyCategoryModal open={open} setOpen={setOpen} handleOpen={handleOpen} handleClose={handleClose} category={props.category} deleteCategoryItem={deleteCategoryItem} />
 
         </div>
         
