@@ -26,40 +26,6 @@
     margin-bottom: 5px;
 }
 
-.category-options {
-    display: flex;
-    justify-content: center;
-    width: 20%;
-    align-items: center;
-}
-
-.modify-category-icon {
-    color: cornflowerblue;
-    position: absolute;
-    margin-right: 75px;
-}
-
-.delete-category-icon {
-    color: red;
-    position: absolute;
-    margin-left: 75px;
-    z-index: 2;
-}
-
-.delete-icon-bg {
-    position: absolute;
-    margin-left: 80px;
-    width: 15px;
-    height: 15px;
-    background-color: #CCCCCC;
-    z-index: 1;
-}
-
-.modify-category-icon:hover, .delete-category-icon:hover {
-    cursor: pointer;
-    font-size: larger;
-}
-
 @media only screen and (max-width: 1000px) {
     .category-item {
         flex-direction: column;

@@ -14,17 +14,21 @@
 }
 
 .logout-btn {
-    /*color: #CCCCCC;*/
-    color: #8dbbe8;
-    margin: 15px 0 35px auto;
-    font-size: large;
+    margin: 15px 5px 35px auto;
     max-height: 0;
     max-width: 0;
 }
 
-.logout-btn:hover {
-    /*color: #FFFFFF;*/
+.logout-btn div {
+    /*color: #1976d2;*/
+    color: #341542;
+    font-size: large;
+}
+
+.modify-category-icon {
     color: #1976d2;
-    cursor: pointer;
-    font-size: larger;
+}
+
+.delete-category-icon {
+    color: red;
 }

@@ -4,22 +4,29 @@
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
+
 }
 
-.dashboard-bg {
-    background-image: linear-gradient(to right bottom, #000000, #2a0c12, #4b0816, #6c0112, #8b0000);
+.dashboard-bg { /*
+    background-image: linear-gradient(to right bottom, #000000, #2a0c12, #4b0816, #6c0112, #8b0000);*/
+    background-color: #85cff9;
     min-width: 100vw;
     padding: 5px 50px;
+    border-bottom:4px solid #341542;
+    box-shadow: 0px 20px 24px 5px rgba(25,118,210,0.15);
+    margin-bottom: 50px;
+    
 }
 
 .title {
-    color: #DDDDDD;
+    color: #341542;
     text-align: center;
     margin: 0 auto 25vh auto;
 }
 
+
 .budget-count {
-    color: #DDDDDD;
+    color: #341542;
     text-align: center;
     margin: 0 auto 25px auto;
 }

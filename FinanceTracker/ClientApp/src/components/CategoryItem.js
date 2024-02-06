@@ -3,6 +3,8 @@ import { faDeleteLeft, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import ModifyCategoryModal from './ModifyCategoryModal';
 import { useState } from 'react';
 import './CategoryItem.css';
+import Stack from '@mui/material/Stack';
+import { DeleteArrowIcon, ModifyIcon } from './Buttons';
 
 export const CategoryItem = (props) => {
     
@@ -38,14 +40,11 @@ export const CategoryItem = (props) => {
         <div className="category-item">
             <div className="category-name">{props.category.categoryName}</div>
             <div className="category-total">${props.category.categoryTotal.toFixed(2)}</div>
-            <div className="category-options">
-                <FontAwesomeIcon icon={faPenToSquare} className="modify-category-icon" onClick={handleOpen}></FontAwesomeIcon>
-                <FontAwesomeIcon icon={faDeleteLeft} className='delete-category-icon' onClick={() => deleteCategoryItem() }></FontAwesomeIcon>
-                <span className="delete-icon-bg"></span> {/*Small white background behind the delete button*/}
-            </div>
-
+            <Stack direction="row" spacing={3}>
+            <ModifyIcon action={handleOpen} />
+            <DeleteArrowIcon action={deleteCategoryItem} />
+            </Stack>
             <ModifyCategoryModal open={open} setOpen={setOpen} handleOpen={handleOpen} handleClose={handleClose} category={props.category} deleteCategoryItem={deleteCategoryItem} />
-
         </div>
         
     );
