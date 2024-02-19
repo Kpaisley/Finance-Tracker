@@ -1,6 +1,4 @@
-﻿import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDeleteLeft, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-import ModifyCategoryModal from './ModifyCategoryModal';
+﻿import ModifyCategoryModal from './ModifyCategoryModal';
 import { useState } from 'react';
 import './CategoryItem.css';
 import Stack from '@mui/material/Stack';
@@ -37,15 +35,20 @@ export const CategoryItem = (props) => {
 
 
     return (
-        <div className="category-item">
+        
+            <div className="category-item">
             <div className="category-name">{props.category.categoryName}</div>
             <div className="category-total">${props.category.categoryTotal.toFixed(2)}</div>
-            <Stack direction="row" spacing={3}>
-            <ModifyIcon action={handleOpen} />
-            <DeleteArrowIcon action={deleteCategoryItem} />
-            </Stack>
-            <ModifyCategoryModal open={open} setOpen={setOpen} handleOpen={handleOpen} handleClose={handleClose} category={props.category} deleteCategoryItem={deleteCategoryItem} />
-        </div>
+
+                <Stack direction="row" spacing={3}>
+                    <ModifyIcon action={handleOpen} />
+                    <DeleteArrowIcon action={deleteCategoryItem} />
+                </Stack>
+            
+                <ModifyCategoryModal open={open} setOpen={setOpen} handleOpen={handleOpen} handleClose={handleClose} category={props.category} deleteCategoryItem={deleteCategoryItem} />
+            </div>
+            
+       
         
     );
 

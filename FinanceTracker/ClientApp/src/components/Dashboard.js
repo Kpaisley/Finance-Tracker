@@ -45,10 +45,12 @@ export const Dashboard = (props) => {
                 <LogoutButton />
                 <h1 className="title">Welcome to your Dashboard!</h1>
                 <h4 className="budget-count">Total Budgets: {budgets.length} / 3</h4>
+                <hr />
+                {/*<AddBudget userID={user.sub} budgetsLength={budgets.length} setBudgets={setBudgets} setBudgetsLoading={setBudgetsLoading} budgetsLoading={budgetsLoading} />*/}
                 
-                <AddBudget userID={user.sub} budgetsLength={budgets.length} setBudgets={setBudgets} setBudgetsLoading={setBudgetsLoading} budgetsLoading={budgetsLoading} />
+                <BudgetInfo budgets={budgets} budgetsLoading={budgetsLoading} populateBudgets={populateBudgets}></BudgetInfo>
             </div>
-            <BudgetInfo budgets={budgets} budgetsLoading={budgetsLoading} populateBudgets={populateBudgets}></BudgetInfo>
+            
         </div>
 
 

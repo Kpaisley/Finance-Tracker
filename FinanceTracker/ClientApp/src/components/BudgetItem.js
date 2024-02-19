@@ -1,6 +1,7 @@
 ﻿import { useNavigate } from 'react-router-dom';
 import './BudgetItem.css';
-import { DeleteBudget, DeleteIcon } from './Buttons';
+import { DeleteButton, ModifyButton } from './Buttons';
+import Stack from '@mui/material/Stack';
 
 export const BudgetItem = (props) => {
     const budget = props.budget;
@@ -39,13 +40,15 @@ export const BudgetItem = (props) => {
     
     return (
         <div className="budget-item">
-            <DeleteIcon action={deleteBudget} />
-
-            <div className='budget-link' onClick={() => redirectToBudget() }>
+            <div className="redirect-link" onClick={() => redirectToBudget()}>
                 <h4>{props.budget.budgetName}</h4>
                 <div><u>Created On</u></div>
                 <div>{dateCreated.slice(0, 10)}</div>
-            </div>          
+            </div>
+            <Stack direction="row" spacing={3}>
+                <ModifyButton />
+                <DeleteButton action={deleteBudget} />
+            </Stack>
         </div>
     );
 }

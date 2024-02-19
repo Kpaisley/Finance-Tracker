@@ -1,6 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket, faDeleteLeft, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import './Buttons.css';
@@ -8,20 +9,48 @@ import './Buttons.css';
 export const PrimaryButton = (props) => {
 
     return (
-        <div onClick={props.action}>
-            <Button variant="outlined">{props.text}</Button>
-        </div>
+        
+        <Button onClick={props.action} variant="outlined">{props.text}</Button>
+        
+    );
+}
+
+export const PrimaryButtonSolid = (props) => {
+
+    return (
+        <Button onClick={props.action} variant="contained">{props.text}</Button>
+    );
+}
+
+export const LinkButton = (props) => {
+    return (
+
+        <Link to={props.href}>
+            <Button size="medium" variant="contained">{props.text}</Button>
+        </Link>
+
     );
 }
 
 export const DeleteButton = (props) => {
 
     return (
-        <div onClick={props.action}>
-            <Button variant="outlined" color="error">
-                Delete
-            </Button>
-        </div>
+        
+        <Button onClick={props.action} variant="outlined" color="error" endIcon={<FontAwesomeIcon icon={faDeleteLeft} />} size="small">
+            Delete
+        </Button>
+        
+    );
+}
+
+export const ModifyButton = (props) => {
+
+    return (
+
+        <Button onClick={props.action} variant="outlined" color="primary" endIcon={<FontAwesomeIcon icon={faPenToSquare} />} size="small" >
+            Modify
+        </Button>
+
     );
 }
 
@@ -30,13 +59,13 @@ export const ModifyIcon = (props) => {
     return (
         
         <IconButton onClick={props.action} size="large">
-            <FontAwesomeIcon icon={faPenToSquare} className="modify-category-icon"></FontAwesomeIcon>
+            <FontAwesomeIcon icon={faPenToSquare} className="modify-icon"></FontAwesomeIcon>
         </IconButton>
         
     );  
 }
 
-export const DeleteIcon = (props) => {
+export const CloseIcon = (props) => {
 
     return (
         <div onClick={props.action} className="delete-btn">X</div>
@@ -47,7 +76,7 @@ export const DeleteArrowIcon = (props) => {
 
     return (
         <IconButton onClick={props.action} size="large">            
-            <FontAwesomeIcon icon={faDeleteLeft} className='delete-category-icon' ></FontAwesomeIcon>
+            <FontAwesomeIcon icon={faDeleteLeft} className='delete-arrow-icon' ></FontAwesomeIcon>
         </IconButton>
     );
 }
@@ -56,7 +85,7 @@ export const LogoutButton = () => {
     const { logout } = useAuth0();
     return (
             <div className="logout-btn" onClick={logout}>
-            <IconButton size="large">
+            <IconButton size="medium">
                 <div>
                     <FontAwesomeIcon icon={faArrowRightFromBracket} />
                 </div>

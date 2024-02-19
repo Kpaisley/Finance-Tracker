@@ -1,16 +1,17 @@
 ﻿
 .delete-btn {
-    color: red;
-    margin: 0 0 5px auto;
-    height: 20px;
-    width: 20px;
-    font-size: large;
+    color: #d32f2f;
+    font-size: 20px;
     font-weight: 600;
+    margin: 0 0 0 auto;
+    width: 28px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 20px;
 }
 
-.delete-btn:hover{
-    cursor: pointer;
-    font-weight: 700;
+.delete-btn:hover {
+    background-color: #d32f2f13;
 }
 
 .logout-btn {
@@ -20,15 +21,16 @@
 }
 
 .logout-btn div {
-    /*color: #1976d2;*/
     color: #341542;
     font-size: large;
 }
 
-.modify-category-icon {
-    color: #1976d2;
+.modify-icon {
+    color: #1565c0;
 }
 
-.delete-category-icon {
-    color: red;
+.delete-arrow-icon {
+    color: #d32f2f;
 }
+
+

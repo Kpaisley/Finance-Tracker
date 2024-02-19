@@ -1,4 +1,5 @@
-﻿import './CategoryInfo.css';
+﻿import { PrimaryButton } from './Buttons';
+import './CategoryInfo.css';
 import { CategoryItem } from './CategoryItem';
 
 export const CategoryInfo = (props) => {
@@ -24,14 +25,16 @@ export const CategoryInfo = (props) => {
     else
         return (
             <div className="category-info">
-                <h2>Manage your Categories Below!</h2>
+                <h2>Modify your Categories Below!</h2>
+                <div>
+                    <PrimaryButton text="Add Category" />
+                </div>
+                <br />
                 {
-
                     props.categories.map(category =>
                         <CategoryItem key={category.id} category={category} userId={props.userId} populateCategories={props.populateCategories} />
                     )
                 }
-
             </div>
         );
 
