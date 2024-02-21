@@ -89,9 +89,27 @@ namespace FinanceTracker.Controllers
 
         //MODIFY A CATEGORY FROM A USER'S BUDGET
         // PUT api/<CategoriesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public void Put([FromBody] ModifyCategoryDTO category)
         {
+            //Verify the budget belongs to the user before modifying its category.
+            var userBudget = _context.Budgets.FirstOrDefault(b => b.UserId.Equals(category.userId) && b.Id == category.budgetId);
+
+            if (userBudget == null)
+            {
+                throw new Exception();
+            }
+            else
+            {
+                var categoryToModify = _context.Categories.FirstOrDefault(c => c.BudgetId == category.budgetId && c.Id == category.categoryId);
+                if (categoryToModify != null) {
+
+                    categoryToModify.CategoryName = category.categoryName;
+                    categoryToModify.CategoryTotal = category.categoryLimit;
+                    _context.SaveChanges();
+                }
+                
+            }
         }
 
         //DELETE A CATEGORY FROM A USER'S BUDGET

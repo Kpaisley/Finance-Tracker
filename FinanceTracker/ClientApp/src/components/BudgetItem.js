@@ -46,7 +46,7 @@ export const BudgetItem = (props) => {
                 <div>{dateCreated.slice(0, 10)}</div>
             </div>
             <Stack direction="row" spacing={3}>
-                <ModifyButton />
+                {/*<ModifyButton />*/}
                 <DeleteButton action={deleteBudget} />
             </Stack>
         </div>

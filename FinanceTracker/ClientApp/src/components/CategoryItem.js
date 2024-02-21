@@ -45,7 +45,7 @@ export const CategoryItem = (props) => {
                     <DeleteArrowIcon action={deleteCategoryItem} />
                 </Stack>
             
-                <ModifyCategoryModal open={open} setOpen={setOpen} handleOpen={handleOpen} handleClose={handleClose} category={props.category} deleteCategoryItem={deleteCategoryItem} />
+            <ModifyCategoryModal open={open} setOpen={setOpen} handleOpen={handleOpen} handleClose={handleClose} populateCategories={props.populateCategories} userId={props.userId} category={props.category} deleteCategoryItem={deleteCategoryItem} />
             </div>
             
        

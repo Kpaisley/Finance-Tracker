@@ -13,7 +13,7 @@ export const SelectedBudget = (props) => {
     const [categories, setCategories] = useState([]);
     const [categoriesLoading, setCategoriesLoading] = useState(true);
 
-    const [tabValue, setTabValue] = useState('one');
+    const [tabValue, setTabValue] = useState('two');
 
     //Populate Categories from CategoriesController.
     async function populateCategories() {
@@ -43,12 +43,12 @@ export const SelectedBudget = (props) => {
     
 
     function tabView() {
-        if (tabValue === "one") {
+        if (tabValue === 'one') {
             return (
                 <CategoryPurchaseForm />
             );
         }
-        else if (tabValue === "two") {
+        else if (tabValue === 'two') {
             return (
                 <CategoryInfo categories={categories} categoriesLoading={categoriesLoading} userId={userId} populateCategories={populateCategories} />
             );

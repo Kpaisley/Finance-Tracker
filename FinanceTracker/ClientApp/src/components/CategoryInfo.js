@@ -32,7 +32,7 @@ export const CategoryInfo = (props) => {
                 <br />
                 {
                     props.categories.map(category =>
-                        <CategoryItem key={category.id} category={category} userId={props.userId} populateCategories={props.populateCategories} />
+                        <CategoryItem key={category.id} userId={props.userId} category={category} populateCategories={props.populateCategories} />
                     )
                 }
             </div>

@@ -75,35 +75,35 @@ export default function ModifyCategoryModal(props) {
     
 
 
-    const modifyCategory = () => {
+    async function modifyCategory() {
         const categoryName = document.getElementById('new-category-name');
         const categoryLimit = document.getElementById('new-category-limit');
 
         if (validateInputs() === true) {
 
             const categoryToModify = {
+                userId: props.userId,
                 budgetId: props.category.budgetId,
-                id: props.category.id,
-                newCategoryName: categoryName.value,
-                newCategoryLimit: parseFloat(categoryLimit.value).toFixed(2)
+                categoryId: props.category.id,
+                categoryName: categoryName.value,
+                categoryLimit: parseFloat(categoryLimit.value).toFixed(2)
             }
 
-            console.log(categoryToModify);
+            const requestOptions = {
+                method: 'PUT',
+                headers: { 'Content-Type': "application/json" },
+                body: JSON.stringify(categoryToModify)
+            }
 
-
-            
-
-
-            
-
-            
-
-
-
-
-
-
-
+            try {
+                await fetch('categories/', requestOptions);
+                props.handleClose();
+                props.populateCategories();
+                
+            }
+            catch (error) {
+                console.log(error);
+            }
         }
     }
      
