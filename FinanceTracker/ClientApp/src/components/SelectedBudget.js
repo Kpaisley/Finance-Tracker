@@ -50,7 +50,7 @@ export const SelectedBudget = (props) => {
         }
         else if (tabValue === 'two') {
             return (
-                <CategoryInfo categories={categories} categoriesLoading={categoriesLoading} userId={userId} populateCategories={populateCategories} />
+                <CategoryInfo categories={categories} categoriesLoading={categoriesLoading} budget={budget} userId={userId} populateCategories={populateCategories} />
             );
         }
 

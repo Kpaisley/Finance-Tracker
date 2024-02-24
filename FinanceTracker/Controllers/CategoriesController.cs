@@ -92,7 +92,7 @@ namespace FinanceTracker.Controllers
         [HttpPut]
         public void Put([FromBody] ModifyCategoryDTO category)
         {
-            //Verify the budget belongs to the user before modifying its category.
+            //INITIALIZE USER BUDGET THAT THE CATEGORY WILL BE MODIFIED FROM
             var userBudget = _context.Budgets.FirstOrDefault(b => b.UserId.Equals(category.userId) && b.Id == category.budgetId);
 
             if (userBudget == null)
@@ -101,6 +101,9 @@ namespace FinanceTracker.Controllers
             }
             else
             {
+                //MODIFY THE DateLastModified FIELD FOR THE USER'S SELECTED BUDGET
+                userBudget.DateLastModified = DateTime.Now.Date;
+
                 var categoryToModify = _context.Categories.FirstOrDefault(c => c.BudgetId == category.budgetId && c.Id == category.categoryId);
                 if (categoryToModify != null) {
 
@@ -125,6 +128,9 @@ namespace FinanceTracker.Controllers
             }
             else
             {
+                //MODIFY THE DateLastModified FIELD FOR THE USER'S SELECTED BUDGET
+                userBudget.DateLastModified = DateTime.Now.Date;
+
                 var categoryToDelete = _context.Categories.FirstOrDefault(c => c.Id == category.categoryId && c.BudgetId == category.budgetId);
                 if (categoryToDelete != null)
                 {

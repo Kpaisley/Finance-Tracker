@@ -6,7 +6,7 @@ import Stack from '@mui/material/Stack';
 import { DeleteButton, CloseIcon, ModifyButton } from './Buttons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
-import './ModifyCategoryModal.css';
+import './CategoryModal.css';
 
 export default function ModifyCategoryModal(props) {
     
@@ -48,16 +48,10 @@ export default function ModifyCategoryModal(props) {
     }
 
     function setSuccess(input) {
-        const formInput = input.parentElement.parentElement;
-        const small = formInput.querySelector('small');
-
-        //Add success message inside small
-        small.style.color = '#00be21';
-        small.innerHTML = 'Looks good!'
-
         //Add success class to formInput
-        formInput.className = 'form-input success';
+        const formInput = input.parentElement.parentElement;
 
+        formInput.className = 'form-input success';
     }
 
     function setErrorFor(input, message) {

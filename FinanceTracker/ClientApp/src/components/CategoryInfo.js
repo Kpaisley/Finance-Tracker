@@ -1,8 +1,15 @@
-﻿import { PrimaryButton } from './Buttons';
+﻿import { useState } from 'react';
+import { PrimaryButton } from './Buttons';
 import './CategoryInfo.css';
 import { CategoryItem } from './CategoryItem';
+import AddCategoryModal from './AddCategoryModal';
 
 export const CategoryInfo = (props) => {
+
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
 
     //Return loader icon if categories are populating.
     if (props.categoriesLoading) {
@@ -15,8 +22,10 @@ export const CategoryInfo = (props) => {
     else if (props.categories.length <= 0) {
         return (
             <div className="no-categories">
+                
                 <h3>You currently have <strong>{props.categories.length}</strong> categories associated with this budget.</h3>
-                <div>Create a category by clicking on 'Add Category' above.</div>
+                <PrimaryButton text="Add a Category!" action={handleOpen} />
+                <AddCategoryModal open={open} setOpen={setOpen} handleOpen={handleOpen} handleClose={handleClose} userId={props.userId} budgetId={props.budget.id} populateCategories={props.populateCategories} />
             </div>
         );
     }
@@ -25,10 +34,13 @@ export const CategoryInfo = (props) => {
     else
         return (
             <div className="category-info">
-                <h2>Modify your Categories Below!</h2>
+                <h2>Manage your Categories Below!</h2>
                 <div>
-                    <PrimaryButton text="Add Category" />
+                    <PrimaryButton text="Add Category" action={handleOpen} />
                 </div>
+                <AddCategoryModal open={open} setOpen={setOpen} handleOpen={handleOpen} handleClose={handleClose} userId={props.userId} budgetId={props.budget.id} populateCategories={props.populateCategories} />
+                    
+                
                 <br />
                 {
                     props.categories.map(category =>

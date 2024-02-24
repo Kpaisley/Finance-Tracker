@@ -1,0 +1,105 @@
+﻿.box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    max-width: 350px;
+    background: #daf0fd;
+    border-radius: 18px;
+    box-shadow: rgba(0, 0, 0, 0.35) 15px 15px 12px;
+    padding: 12px;
+    color: #341542;
+}
+
+#modify-category-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+}
+
+#modify-category-form h3 { 
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.form-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 200px;
+    padding: 7px;
+}
+
+.form-input label {
+    font-weight: 500;
+    font-size: 18px;
+    margin: 0 0 7px 0;
+}
+
+.form-input input {
+    background-color: #fff;
+    border: 2px solid #daf0fd;
+    border-radius: 8px;
+    text-align: center;
+    color: #85cff9;
+    width: 175px;
+    padding-left: 23px;
+    padding-right: 23px;
+}
+
+.form-input input::placeholder {
+    color: #85cff9;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+#modify-category-form .button-stack {
+    margin: 15px 0;
+}
+
+.checkmark-icon {
+    position: absolute;
+    top: 20%;
+    left: 88%;
+    color: #00be21;
+    visibility: hidden;
+}
+
+.error-icon {
+    position: absolute;
+    top: 20%;
+    left: 88%;
+    color: #d32f2f;
+    visibility: hidden;
+}
+
+.form-input small {
+    margin-top: 5px;
+}
+
+.form-input.success input {
+    border-color: #00be21;
+}
+
+.form-input.error input {
+    border-color: #d32f2f;
+}
+
+.form-input.success .checkmark-icon {
+    visibility: visible;
+}
+
+.form-input.error .error-icon {
+    visibility: visible;
+}
+
+.form-input.error small {
+    visibility: visible;
+}
+
+
+

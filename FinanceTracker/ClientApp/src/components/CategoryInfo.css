@@ -2,11 +2,15 @@
 .no-categories {
     width: auto;
     padding: 15px;
-    margin-top: 15px;
+    margin-top: 10px;
     text-align: center;
     color: #341542;
     width: 100vw;
     min-height: 100%
+}
+.no-categories h3 {
+    margin-top: 50px;
+    margin-bottom: 30px;
 }
 
 .no-categories div {
@@ -28,7 +32,4 @@
     color: #341542;
     margin-top: 25px;
     margin-bottom: 35px;
-}
-
-.category-info div {
 }
