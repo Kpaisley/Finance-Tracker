@@ -5,10 +5,6 @@ import Stack from '@mui/material/Stack';
 import { DeleteArrowIcon, ModifyIcon } from './Buttons';
 
 export const CategoryItem = (props) => {
-    
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
 
     async function deleteCategoryItem() {
 
@@ -36,17 +32,16 @@ export const CategoryItem = (props) => {
 
     return (
         
-            <div className="category-item">
-            <div className="category-name">{props.category.categoryName}</div>
+
+        <div className="category-item">
+           <div className="category-name">{props.category.categoryName}</div>
             <div className="category-total">${props.category.categoryTotal.toFixed(2)}</div>
 
-                <Stack direction="row" spacing={3}>
-                    <ModifyIcon action={handleOpen} />
-                    <DeleteArrowIcon action={deleteCategoryItem} />
-                </Stack>
-            
-            <ModifyCategoryModal open={open} setOpen={setOpen} handleOpen={handleOpen} handleClose={handleClose} populateCategories={props.populateCategories} userId={props.userId} category={props.category} deleteCategoryItem={deleteCategoryItem} />
-            </div>
+            <Stack direction="row" spacing={3}>
+                <ModifyCategoryModal populateCategories={props.populateCategories} userId={props.userId} category={props.category} deleteCategoryItem={deleteCategoryItem} />
+                <DeleteArrowIcon action={deleteCategoryItem} />
+            </Stack>
+        </div>
             
        
         

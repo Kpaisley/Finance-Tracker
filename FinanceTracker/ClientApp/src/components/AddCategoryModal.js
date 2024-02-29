@@ -5,14 +5,19 @@ import Fade from '@mui/material/Fade';
 import { CloseIcon, PrimaryButton } from './Buttons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
-import './CategoryModal.css';
+import './Modal.css';
+import { useState } from 'react';
 
 
 export default function AddCategoryModal(props) {
 
-    function validateInputs() {
-        const categoryName = document.getElementById('add-category-name');
-        const categoryLimit = document.getElementById('add-category-limit');
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+
+
+    function validateInputs(categoryName, categoryLimit) {
         var nameSuccess = false;
         var limitSuccess = false;
 
@@ -20,7 +25,7 @@ export default function AddCategoryModal(props) {
             setErrorFor(categoryName, 'Category name cannot be blank');
         }
         else if (categoryName.value.length > 25) {
-            setErrorFor(categoryName, 'Category name must be less than 25 characters');
+            setErrorFor(categoryName, 'Category name must be 25 characters or less');
         }
 
         else {
@@ -48,9 +53,13 @@ export default function AddCategoryModal(props) {
     }
 
     function setSuccess(input) {
-        //Add success class to formInput
         const formInput = input.parentElement.parentElement;
-        
+        const small = formInput.querySelector('small');
+
+        //Remove any error messages from small
+        small.innerHTML = "";
+
+        //Add success class to formInput
         formInput.className = 'form-input success';
     }
 
@@ -71,7 +80,9 @@ export default function AddCategoryModal(props) {
         const categoryName = document.getElementById('add-category-name');
         const categoryLimit = document.getElementById('add-category-limit');
 
-        if (validateInputs() === true) {
+        if (validateInputs(categoryName, categoryLimit) === true) {
+
+            handleClose();
 
             const categoryToAdd = {
                 userId: props.userId,
@@ -87,7 +98,6 @@ export default function AddCategoryModal(props) {
 
             try {
                 await fetch('/categories', requestOptions);
-                props.handleClose();
                 props.populateCategories();
             }
             catch (error) {
@@ -97,16 +107,12 @@ export default function AddCategoryModal(props) {
 
     }
 
-
-
-
-
-
     return (
         <div>
+            <PrimaryButton text="Add Category" action={handleOpen} />
             <Modal
-                open={props.open}
-                onClose={props.handleClose}
+                open={open}
+                onClose={handleClose}
                 closeAfterTransition
                 slots={{ backdrop: Backdrop }}
                 slotProps={{
@@ -115,13 +121,13 @@ export default function AddCategoryModal(props) {
                     },
                 }}
             >
-                <Fade in={props.open}>
+                <Fade in={open}>
                     <Box className="box">
 
-                        <CloseIcon action={props.handleClose} />
+                        <CloseIcon action={handleClose} />
 
 
-                        <form id="modify-category-form">
+                        <form id="modal-form" >
                             <h3>Add a Category!</h3>
 
                             <div className="form-input">
@@ -146,7 +152,9 @@ export default function AddCategoryModal(props) {
                                 <small></small>
                             </div>
 
-                            <PrimaryButton text={"Add Category"} action={addCategory} />
+                            <div className="add-btn">
+                                <PrimaryButton text={"Add Category"} action={addCategory} />
+                            </div>
 
                         </form>
 

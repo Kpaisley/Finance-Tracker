@@ -3,16 +3,18 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Stack from '@mui/material/Stack';
-import { DeleteButton, CloseIcon, ModifyButton } from './Buttons';
+import { DeleteButton, CloseIcon, ModifyButton, ModifyIcon } from './Buttons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
-import './CategoryModal.css';
+import './Modal.css';
+import { useState } from 'react';
 
 export default function ModifyCategoryModal(props) {
-    
-    function validateInputs() {
-        const categoryName = document.getElementById('new-category-name');
-        const categoryLimit = document.getElementById('new-category-limit');
+
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+    function validateInputs(categoryName, categoryLimit) {
         var nameSuccess = false;
         var limitSuccess = false;
 
@@ -20,7 +22,7 @@ export default function ModifyCategoryModal(props) {
             setErrorFor(categoryName, 'Category name cannot be blank');
         }
         else if (categoryName.value.length > 25) {
-            setErrorFor(categoryName, 'Category name must be less than 25 characters');
+            setErrorFor(categoryName, 'Category name must be 25 characters or less');
         }
         
         else {
@@ -48,9 +50,13 @@ export default function ModifyCategoryModal(props) {
     }
 
     function setSuccess(input) {
-        //Add success class to formInput
         const formInput = input.parentElement.parentElement;
+        const small = formInput.querySelector('small');
 
+        //Remove any error messages from small
+        small.innerHTML = "";
+
+        //Add success class to formInput
         formInput.className = 'form-input success';
     }
 
@@ -73,7 +79,7 @@ export default function ModifyCategoryModal(props) {
         const categoryName = document.getElementById('new-category-name');
         const categoryLimit = document.getElementById('new-category-limit');
 
-        if (validateInputs() === true) {
+        if (validateInputs(categoryName, categoryLimit) === true) {
 
             const categoryToModify = {
                 userId: props.userId,
@@ -91,7 +97,7 @@ export default function ModifyCategoryModal(props) {
 
             try {
                 await fetch('categories/', requestOptions);
-                props.handleClose();
+                handleClose();
                 props.populateCategories();
                 
             }
@@ -104,9 +110,10 @@ export default function ModifyCategoryModal(props) {
 
     return (
         <div>
+            <ModifyIcon action={handleOpen} />
             <Modal
-                open={props.open}
-                onClose={props.handleClose}
+                open={open}
+                onClose={handleClose}
                 closeAfterTransition
                 slots={{ backdrop: Backdrop }}
                 slotProps={{
@@ -115,13 +122,13 @@ export default function ModifyCategoryModal(props) {
                     },
                 }}
             >
-                <Fade in={props.open}>
+                <Fade in={open}>
                     <Box className="box">
 
-                        <CloseIcon action={props.handleClose} />
+                        <CloseIcon action={handleClose} />
                         
 
-                        <form id="modify-category-form">
+                        <form id="modal-form">
                             <h3>Modify your Category!</h3>
 
                             <div className="form-input">

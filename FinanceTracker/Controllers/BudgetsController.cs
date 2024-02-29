@@ -29,7 +29,7 @@ namespace FinanceTracker.Controllers
         //ADD A NEW BUDGET TO THE DATABASE
         // POST api/<BudgetsController>
         [HttpPost]
-        public IEnumerable<Budget> Post([FromBody] AddBudgetDTO value)
+        public void Post([FromBody] AddBudgetDTO value)
         {
             var userBudgets = _context.Budgets.Where(b => b.UserId.Equals(value.userID)).ToList();
 
@@ -47,19 +47,15 @@ namespace FinanceTracker.Controllers
                 _context.Budgets.Add(budgetToAdd);
                 _context.SaveChanges();
             }
-
-            //Return updated budget list 
-            var newBudgets = _context.Budgets.Where(b => b.UserId.Equals(value.userID)).ToList();
-            return newBudgets;
         }
 
 
 
-        // PUT api/<BudgetsController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
+        //PUT api/<BudgetsController>/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] string value)
+        {
+        }
 
 
 

@@ -2,7 +2,6 @@
 import { CategoryInfo } from './CategoryInfo';
 import { CategoryPurchaseForm } from './CategoryPurchaseForm';
 import { LinkButton, LogoutButton } from './Buttons';
-import { AddCategory } from './AddCategory';
 import { SelectedBudgetTab } from './SelectedBudgetTab';
 import './SelectedBudget.css';
 
@@ -71,8 +70,6 @@ export const SelectedBudget = (props) => {
                 </div>
 
                 <LinkButton href="/" text="To Dashboard" />
-
-                {/*<AddCategory budget={budget} populateCategories={populateCategories} />*/}
 
                 
 

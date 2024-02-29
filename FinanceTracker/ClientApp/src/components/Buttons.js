@@ -18,7 +18,7 @@ export const PrimaryButton = (props) => {
 export const PrimaryButtonSolid = (props) => {
 
     return (
-        <Button onClick={props.action} variant="contained">{props.text}</Button>
+        <Button onClick={props.action} variant="contained" disabled={props.disabled}>{props.text}</Button>
     );
 }
 

@@ -4,6 +4,7 @@ import { AddBudget } from "./AddBudget";
 import { BudgetInfo } from "./BudgetInfo";
 import { LogoutButton } from './Buttons';
 import './Dashboard.css';
+import AddBudgetModal from "./AddBudgetModal";
 
 
 
@@ -47,7 +48,7 @@ export const Dashboard = (props) => {
                 <h4 className="budget-count">Total Budgets: {budgets.length} / 3</h4>
                 <hr />
                 {/*<AddBudget userID={user.sub} budgetsLength={budgets.length} setBudgets={setBudgets} setBudgetsLoading={setBudgetsLoading} budgetsLoading={budgetsLoading} />*/}
-                <AddBudget budgetsLoading={budgetsLoading} budgets={budgets} />
+                <AddBudgetModal userId={user.sub} budgetsLength={budgets.length} populateBudgets={populateBudgets} budgetsLoading={budgetsLoading}  />
                 <BudgetInfo budgets={budgets} budgetsLoading={budgetsLoading} populateBudgets={populateBudgets}></BudgetInfo>
             </div>
             

@@ -6,11 +6,6 @@ import AddCategoryModal from './AddCategoryModal';
 
 export const CategoryInfo = (props) => {
 
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
-
     //Return loader icon if categories are populating.
     if (props.categoriesLoading) {
         return (
@@ -24,8 +19,7 @@ export const CategoryInfo = (props) => {
             <div className="no-categories">
                 
                 <h3>You currently have <strong>{props.categories.length}</strong> categories associated with this budget.</h3>
-                <PrimaryButton text="Add a Category!" action={handleOpen} />
-                <AddCategoryModal open={open} setOpen={setOpen} handleOpen={handleOpen} handleClose={handleClose} userId={props.userId} budgetId={props.budget.id} populateCategories={props.populateCategories} />
+                <AddCategoryModal userId={props.userId} budgetId={props.budget.id} populateCategories={props.populateCategories} />
             </div>
         );
     }
@@ -35,10 +29,7 @@ export const CategoryInfo = (props) => {
         return (
             <div className="category-info">
                 <h2>Manage your Categories Below!</h2>
-                <div>
-                    <PrimaryButton text="Add Category" action={handleOpen} />
-                </div>
-                <AddCategoryModal open={open} setOpen={setOpen} handleOpen={handleOpen} handleClose={handleClose} userId={props.userId} budgetId={props.budget.id} populateCategories={props.populateCategories} />
+                <AddCategoryModal userId={props.userId} budgetId={props.budget.id} populateCategories={props.populateCategories} />
                     
                 
                 <br />
