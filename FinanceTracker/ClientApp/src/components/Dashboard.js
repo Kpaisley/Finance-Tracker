@@ -1,6 +1,5 @@
 ﻿import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
-import { AddBudget } from "./AddBudget";
 import { BudgetInfo } from "./BudgetInfo";
 import { LogoutButton } from './Buttons';
 import './Dashboard.css';
@@ -38,16 +37,36 @@ export const Dashboard = (props) => {
         populateBudgets();
     }, []);
 
+    //Return content based on the amount of budgets created.
+    const content = () => {
+
+        if (budgets.length === 0) {
+            return (
+                <h5>
+                    Add a budget below to get started!
+                </h5>
+            );
+        }
+        else {
+            return (
+                <h5>
+                    Manage, Modify and Delete your budgets below!
+                </h5>
+            );
+        
+        }
+    }
+
 
     return (
 
         <div id="dashboard" className='noselect'>
             <div className="dashboard-bg">
                 <LogoutButton />
-                <h1 className="title">Welcome to your Dashboard!</h1>
+                <h1 className="title">Welcome to your Dashboard</h1>
                 <h4 className="budget-count">Total Budgets: {budgets.length} / 3</h4>
+                {content()}
                 <hr />
-                {/*<AddBudget userID={user.sub} budgetsLength={budgets.length} setBudgets={setBudgets} setBudgetsLoading={setBudgetsLoading} budgetsLoading={budgetsLoading} />*/}
                 <AddBudgetModal userId={user.sub} budgetsLength={budgets.length} populateBudgets={populateBudgets} budgetsLoading={budgetsLoading}  />
                 <BudgetInfo budgets={budgets} budgetsLoading={budgetsLoading} populateBudgets={populateBudgets}></BudgetInfo>
             </div>

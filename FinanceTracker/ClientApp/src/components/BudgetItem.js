@@ -2,6 +2,7 @@
 import './BudgetItem.css';
 import { DeleteButton, ModifyButton } from './Buttons';
 import Stack from '@mui/material/Stack';
+import ModifyBudgetModal from './ModifyBudgetModal';
 
 export const BudgetItem = (props) => {
     const budget = props.budget;
@@ -46,7 +47,7 @@ export const BudgetItem = (props) => {
                 <div>{dateCreated.slice(0, 10)}</div>
             </div>
             <Stack direction="row" spacing={3}>
-                {/*<ModifyButton />*/}
+                <ModifyBudgetModal budget={budget} populateBudgets={props.populateBudgets} deleteBudget={deleteBudget} />
                 <DeleteButton action={deleteBudget} />
             </Stack>
         </div>

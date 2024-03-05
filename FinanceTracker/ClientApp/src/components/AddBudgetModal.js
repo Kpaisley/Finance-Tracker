@@ -27,7 +27,7 @@ export default function AddBudgetModal(props) {
             return false;
         }
         else if (regex.test(budgetName.value) === false) {
-            setErrorFor(budgetName, 'Budget name must contain 1 or more characters');
+            setErrorFor(budgetName, 'Budget name is not valid');
             return false;
         }
         else {
@@ -70,7 +70,7 @@ export default function AddBudgetModal(props) {
             handleClose();
 
             const budgetInfo = {
-                userID: props.userId,
+                userId: props.userId,
                 budgetName: budgetName.value
             }
 

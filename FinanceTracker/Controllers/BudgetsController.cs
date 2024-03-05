@@ -31,7 +31,7 @@ namespace FinanceTracker.Controllers
         [HttpPost]
         public void Post([FromBody] AddBudgetDTO value)
         {
-            var userBudgets = _context.Budgets.Where(b => b.UserId.Equals(value.userID)).ToList();
+            var userBudgets = _context.Budgets.Where(b => b.UserId.Equals(value.userId)).ToList();
 
             //Verify that user has a maximum of 3 budgets
             if (userBudgets.Count <= 2)
@@ -39,7 +39,7 @@ namespace FinanceTracker.Controllers
                 //Create and save new budget to database
                 Budget budgetToAdd = new Budget
                 {
-                    UserId = value.userID,
+                    UserId = value.userId,
                     BudgetName = value.budgetName,
                     DateCreated = DateTime.Now.Date,
                     DateLastModified = DateTime.Now.Date
@@ -52,9 +52,21 @@ namespace FinanceTracker.Controllers
 
 
         //PUT api/<BudgetsController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public void Put([FromBody] ModifyBudgetDTO budget)
         {
+            //Initialize the budget that will be modified
+            var budgetToModify = _context.Budgets.FirstOrDefault(b => b.UserId.Equals(budget.userId) && b.Id == budget.budgetId);
+
+            if (budgetToModify == null)
+            {
+                throw new Exception();
+            }
+
+            budgetToModify.BudgetName = budget.budgetName;
+            budgetToModify.DateLastModified = DateTime.Now.Date;
+
+            _context.SaveChanges();
         }
 
 

@@ -15,7 +15,6 @@ export const BudgetInfo = (props) => {
         return (
             <div className="no-budgets">
                 <h3>You currently have <strong>0</strong> budgets stored in the database</h3>
-                <div>Create a budget by clicking on 'Add Budget' above</div>
             </div>
         );
     }

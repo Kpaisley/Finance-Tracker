@@ -22,20 +22,25 @@
     width: 100vw;
     opacity: .5;
     color: #FFF;
-    margin-bottom: 25px;
+    margin-bottom: 50px;
+}
+
+.dashboard-bg h3 {
+
 }
 
 .title {
     color: #341542;
     text-align: center;
-    margin: 0 auto 25vh auto;
+    margin: 0 auto 125px auto;
+    text-decoration: underline;
 }
 
 
 .budget-count {
     color: #341542;
     text-align: center;
-    margin: 0 auto 25px auto;
+    margin: 0 auto 50px auto;
 }
 
 
