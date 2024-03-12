@@ -128,8 +128,8 @@ export default function ModifyCategoryModal(props) {
                         <CloseIcon action={handleClose} />
                         
 
-                        <form id="modal-form">
-                            <h3>Modify your Category!</h3>
+                        <form className="modal-form">
+                            <h2>Modify your Category!</h2>
 
                             <div className="form-input">
                                 <label>Category Name</label>

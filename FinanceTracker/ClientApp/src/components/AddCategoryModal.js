@@ -127,8 +127,8 @@ export default function AddCategoryModal(props) {
                         <CloseIcon action={handleClose} />
 
 
-                        <form id="modal-form" >
-                            <h3>Add a Category!</h3>
+                        <form className="modal-form" >
+                            <h2>Add a Category!</h2>
 
                             <div className="form-input">
                                 <label>Category Name</label>

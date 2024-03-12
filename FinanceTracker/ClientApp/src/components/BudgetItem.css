@@ -9,6 +9,7 @@
     width: 30%;
     min-width: 250px;
     margin: 10px;
+    padding: 20px;
     padding-bottom: 10px;
     transition: .1s;
     align-items: center;
@@ -24,7 +25,7 @@
     cursor: pointer;
 }
 
-.budget-item h4 {
+.budget-item h3 {
     margin: 20px 20px 30px 20px;
     overflow: hidden;
     text-overflow: ellipsis;

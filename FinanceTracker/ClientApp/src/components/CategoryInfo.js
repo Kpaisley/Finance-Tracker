@@ -1,6 +1,4 @@
-﻿import { useState } from 'react';
-import { PrimaryButton } from './Buttons';
-import './CategoryInfo.css';
+﻿import './CategoryInfo.css';
 import { CategoryItem } from './CategoryItem';
 import AddCategoryModal from './AddCategoryModal';
 
@@ -29,10 +27,13 @@ export const CategoryInfo = (props) => {
         return (
             <div className="category-info">
                 <h2>Manage your Categories Below!</h2>
-                <AddCategoryModal userId={props.userId} budgetId={props.budget.id} populateCategories={props.populateCategories} />
+                <h4>Total: ${props.categoryTotals}</h4>
+                <div className='add-category'>
+                    <AddCategoryModal userId={props.userId} budgetId={props.budget.id} populateCategories={props.populateCategories} />
+                </div>
                     
                 
-                <br />
+                
                 {
                     props.categories.map(category =>
                         <CategoryItem key={category.id} userId={props.userId} category={category} populateCategories={props.populateCategories} />

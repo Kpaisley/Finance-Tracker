@@ -32,4 +32,14 @@
     color: #341542;
     margin-top: 25px;
     margin-bottom: 35px;
+    text-decoration: underline;
+}
+
+.category-info h4 {
+    color: white;
+    margin-bottom: 35px;
+}
+
+.category-info .add-category {
+    margin-bottom: 30px;
 }

@@ -12,14 +12,14 @@
     color: #341542;
 }
 
-#modal-form {
+.modal-form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 5px;
+    padding: 20px;
 }
 
-#modal-form h3 { 
+.modal-form h2 { 
     text-align: center;
     font-weight: 500;
     margin-bottom: 28px;
@@ -39,7 +39,7 @@
 
 .form-input label {
     font-weight: 500;
-    font-size: 18px;
+    font-size: 21px;
     margin: 0 0 8px 0;
 }
 
@@ -66,7 +66,7 @@
     position: relative;
 }
 
-#modal-form .button-stack {
+.modal-form .button-stack {
     margin: 15px 0;
 }
 

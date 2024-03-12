@@ -10,8 +10,8 @@ export const SelectedBudget = (props) => {
     const budget = props.budget;
     const userId = props.budget.userId;
     const [categories, setCategories] = useState([]);
+    const [categoryTotals, setCategoryTotals] = useState(0.00);
     const [categoriesLoading, setCategoriesLoading] = useState(true);
-
     const [tabValue, setTabValue] = useState('two');
 
     //Populate Categories from CategoriesController.
@@ -24,6 +24,7 @@ export const SelectedBudget = (props) => {
             const response = await fetch('categories/' + userId + "/" + budgetId);
             const data = await response.json();
             setCategories(data);
+            addCategoryTotals(data);
             setCategoriesLoading(false);
         }
         catch (error) {
@@ -31,16 +32,22 @@ export const SelectedBudget = (props) => {
         }
     }
 
+    //Add the total from each Category.
+    function addCategoryTotals(data) {
+        var total = 0;
+        for (var i = 0; i < data.length; i++) {
+            total += data[i].categoryTotal;
+        }
+        setCategoryTotals(total.toFixed(2));
+    }
+
+
+    
 
     useEffect(() => {
         populateCategories();
     }, []);
-
-    //Update DOM when user switches between tabs.
-    useEffect(() => {
-    }, [tabValue]);
     
-
     function tabView() {
         if (tabValue === 'one') {
             return (
@@ -49,7 +56,7 @@ export const SelectedBudget = (props) => {
         }
         else if (tabValue === 'two') {
             return (
-                <CategoryInfo categories={categories} categoriesLoading={categoriesLoading} budget={budget} userId={userId} populateCategories={populateCategories} />
+                <CategoryInfo categories={categories} categoryTotals={categoryTotals} categoriesLoading={categoriesLoading} budget={budget} userId={userId} populateCategories={populateCategories} />
             );
         }
 
@@ -63,7 +70,6 @@ export const SelectedBudget = (props) => {
             <div className="selected-budget-bg">
                 <LogoutButton />
                 <h1>{budget.budgetName}</h1>
-
                 <div className='date-modified'>
                     <u>Last Modified</u>
                     <p>{budget.dateLastModified.slice(0, 10)}</p>

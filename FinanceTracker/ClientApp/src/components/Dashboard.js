@@ -42,14 +42,14 @@ export const Dashboard = (props) => {
 
         if (budgets.length === 0) {
             return (
-                <h5>
+                <h5 style={{ textAlign: "center" }}>
                     Add a budget below to get started!
                 </h5>
             );
         }
         else {
             return (
-                <h5>
+                <h5 style={{textAlign:"center"}}>
                     Manage, Modify and Delete your budgets below!
                 </h5>
             );

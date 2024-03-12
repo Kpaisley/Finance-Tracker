@@ -51,7 +51,9 @@ namespace FinanceTracker.Controllers
 
                     budgetCategories.Add(categoryToAdd);
                 }
+
             }
+
 
             return budgetCategories;
 

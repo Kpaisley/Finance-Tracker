@@ -115,8 +115,8 @@ export default function AddBudgetModal(props) {
                             <CloseIcon action={handleClose} />
 
 
-                            <form id="modal-form" onSubmit={(e) => e.preventDefault() }>
-                                <h3>Add a Budget!</h3>
+                            <form className="modal-form" onSubmit={(e) => e.preventDefault() }>
+                                <h2>Add a Budget!</h2>
 
                                 <div className="form-input">
                                     <label>Budget Name</label>

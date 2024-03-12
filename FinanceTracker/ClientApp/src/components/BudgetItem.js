@@ -1,6 +1,6 @@
 ﻿import { useNavigate } from 'react-router-dom';
 import './BudgetItem.css';
-import { DeleteButton, ModifyButton } from './Buttons';
+import { DeleteButton } from './Buttons';
 import Stack from '@mui/material/Stack';
 import ModifyBudgetModal from './ModifyBudgetModal';
 
@@ -8,6 +8,12 @@ export const BudgetItem = (props) => {
     const budget = props.budget;
     const dateCreated = budget.dateCreated.toString();
     const navigator = useNavigate();
+
+
+
+    
+
+
 
     
     //Delete a budget and its related categories once a user confirms they want to delete it.
@@ -42,7 +48,7 @@ export const BudgetItem = (props) => {
     return (
         <div className="budget-item">
             <div className="redirect-link" onClick={() => redirectToBudget()}>
-                <h4>{props.budget.budgetName}</h4>
+                <h3>{props.budget.budgetName}</h3>
                 <div><u>Created On</u></div>
                 <div>{dateCreated.slice(0, 10)}</div>
             </div>
