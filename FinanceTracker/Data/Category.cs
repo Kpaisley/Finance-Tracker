@@ -14,4 +14,6 @@ public partial class Category
     public decimal CategoryTotal { get; set; }
 
     public virtual Budget Budget { get; set; } = null!;
+
+    public virtual ICollection<Purchase> Purchases { get; set; } = new List<Purchase>();
 }

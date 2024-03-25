@@ -6,21 +6,24 @@ namespace FinanceTracker.Data;
 
 public partial class BudgetFlowContext : DbContext
 {
-    public BudgetFlowContext()
-    {
-    }
+    private readonly IConfiguration _configuration;
+    private readonly string conn;
 
-    public BudgetFlowContext(DbContextOptions<BudgetFlowContext> options)
+    public BudgetFlowContext(DbContextOptions<BudgetFlowContext> options, IConfiguration configuration)
         : base(options)
     {
+        _configuration = configuration;
+        conn = _configuration.GetConnectionString("BudgetFlow");
     }
 
     public virtual DbSet<Budget> Budgets { get; set; }
 
     public virtual DbSet<Category> Categories { get; set; }
 
+    public virtual DbSet<Purchase> Purchases { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Name=ConnectionStrings:BudgetFlow");
+        => optionsBuilder.UseSqlServer(conn);
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -55,6 +58,29 @@ public partial class BudgetFlowContext : DbContext
                 .HasForeignKey(d => d.BudgetId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Categorie__Budge__398D8EEE");
+        });
+
+        modelBuilder.Entity<Purchase>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Purchase__3214EC27231B4539");
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.BudgetId).HasColumnName("BudgetID");
+            entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
+            entity.Property(e => e.PurchaseName)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.PurchaseTotal).HasColumnType("decimal(9, 2)");
+
+            entity.HasOne(d => d.Budget).WithMany(p => p.Purchases)
+                .HasForeignKey(d => d.BudgetId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Purchases__Budge__5CD6CB2B");
+
+            entity.HasOne(d => d.Category).WithMany(p => p.Purchases)
+                .HasForeignKey(d => d.CategoryId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Purchases__Categ__5DCAEF64");
         });
 
         OnModelCreatingPartial(modelBuilder);
