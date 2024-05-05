@@ -16,7 +16,7 @@ export const CategoryInfo = (props) => {
         return (
             <div className="no-categories">
                 
-                <h3>You currently have <strong>{props.categories.length}</strong> categories associated with this budget.</h3>
+                <h3>You currently have <strong>0</strong> categories associated with this budget</h3>
                 <AddCategoryModal userId={props.userId} budgetId={props.budget.id} populateCategories={props.populateCategories} />
             </div>
         );
@@ -26,13 +26,11 @@ export const CategoryInfo = (props) => {
     else
         return (
             <div className="category-info">
-                <h2>Manage your Categories Below!</h2>
+                <h3>Manage your Categories Below!</h3>
                 <h4>Total: ${props.categoryTotals}</h4>
                 <div className='add-category'>
                     <AddCategoryModal userId={props.userId} budgetId={props.budget.id} populateCategories={props.populateCategories} />
                 </div>
-                    
-                
                 
                 {
                     props.categories.map(category =>

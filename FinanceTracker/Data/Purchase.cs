@@ -15,6 +15,10 @@ public partial class Purchase
 
     public decimal PurchaseTotal { get; set; }
 
+    public DateTime PurchaseDate { get; set; }
+
+    public bool PaidOff { get; set; }
+
     public virtual Budget Budget { get; set; } = null!;
 
     public virtual Category Category { get; set; } = null!;

@@ -5,9 +5,8 @@ import Fade from '@mui/material/Fade';
 import { CloseIcon, PrimaryButton } from './Buttons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
-import './Modal.css';
 import { useState } from 'react';
-
+import './Modal.css';
 
 export default function AddCategoryModal(props) {
 
@@ -22,10 +21,10 @@ export default function AddCategoryModal(props) {
         var limitSuccess = false;
 
         if (categoryName.value === '') {
-            setErrorFor(categoryName, 'Category name cannot be blank');
+            setErrorFor(categoryName, 'Category name must contain at least <strong>1</strong> character');
         }
         else if (categoryName.value.length > 25) {
-            setErrorFor(categoryName, 'Category name must be 25 characters or less');
+            setErrorFor(categoryName, 'Category name cannot exceed <strong>25</strong> characters');
         }
 
         else {
@@ -34,10 +33,10 @@ export default function AddCategoryModal(props) {
         }
 
         if (categoryLimit.value < 1) {
-            setErrorFor(categoryLimit, 'Category limit must be greater than 1');
+            setErrorFor(categoryLimit, 'Category limit must be at least <strong>$1.00</strong>');
         }
         else if (parseFloat(categoryLimit.value).toFixed(2) >= 100000000.00) {
-            setErrorFor(categoryLimit, 'Category limit must be less than 100 million');
+            setErrorFor(categoryLimit, 'Category limit  must be less than <strong>100</strong> million');
         }
         else {
             limitSuccess = true;
@@ -134,8 +133,8 @@ export default function AddCategoryModal(props) {
                                 <label>Category Name</label>
                                 <span className='input-wrapper'>
                                     <input id="add-category-name" type="text" maxLength="25" placeholder="Bills"></input>
-                                    <FontAwesomeIcon className="checkmark-icon" icon={faCircleCheck} />
-                                    <FontAwesomeIcon className="error-icon" icon={faCircleExclamation} />
+                                    <FontAwesomeIcon className="modal-checkmark-icon" icon={faCircleCheck} />
+                                    <FontAwesomeIcon className="modal-error-icon" icon={faCircleExclamation} />
                                 </span>
                                 <small></small>
                             </div>
@@ -146,8 +145,8 @@ export default function AddCategoryModal(props) {
                                 <label>Category Limit</label>
                                 <span className='input-wrapper'>
                                     <input id="add-category-limit" type="number" min="0.1" step="0.01" max="99999999.99" placeholder="2000.00"></input>
-                                    <FontAwesomeIcon className="checkmark-icon" icon={faCircleCheck} />
-                                    <FontAwesomeIcon className="error-icon" icon={faCircleExclamation} />
+                                    <FontAwesomeIcon className="modal-checkmark-icon" icon={faCircleCheck} />
+                                    <FontAwesomeIcon className="modal-error-icon" icon={faCircleExclamation} />
                                 </span>
                                 <small></small>
                             </div>

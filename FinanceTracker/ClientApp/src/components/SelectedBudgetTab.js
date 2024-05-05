@@ -23,8 +23,8 @@ export const SelectedBudgetTab = (props) => {
                 indicatorColor="primary"
                 aria-label="secondary tabs example"
             >
-                <Tab onClick={() => props.setTabValue("one")} value="one" label={"Add Purchase" } />
-                <Tab onClick={() => props.setTabValue("two")} value="two" label="Manage Categories" />
+                <Tab onClick={() => props.setTabValue('one')} value="one" label="Add Purchase"  />
+                <Tab onClick={() => props.setTabValue('two')} value="two" label="Manage Categories" />
             </Tabs>
         </Box>
     );

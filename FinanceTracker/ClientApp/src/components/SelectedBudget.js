@@ -1,9 +1,9 @@
 ﻿import { useEffect, useState } from 'react';
 import { CategoryInfo } from './CategoryInfo';
-import { CategoryPurchaseForm } from './CategoryPurchaseForm';
 import { LinkButton, LogoutButton } from './Buttons';
 import { SelectedBudgetTab } from './SelectedBudgetTab';
 import './SelectedBudget.css';
+import { PurchaseInfo } from './PurchaseInfo';
 
 
 export const SelectedBudget = (props) => {
@@ -12,11 +12,36 @@ export const SelectedBudget = (props) => {
     const [categories, setCategories] = useState([]);
     const [categoryTotals, setCategoryTotals] = useState(0.00);
     const [categoriesLoading, setCategoriesLoading] = useState(true);
-    const [tabValue, setTabValue] = useState('two');
+    const [purchases, setPurchases] = useState([]);
+    const [purchasesLoading, setPurchasesLoading] = useState(true);
+    const [tabValue, setTabValue] = useState('one');
+
+
+
+    async function populatePurchases() {
+        
+
+        const budgetId = budget.id;
+       
+        try {
+            const response = await fetch('purchases/' + userId + "/" + budgetId);
+            const data = await response.json();
+            setPurchases(data);
+            setPurchasesLoading(false);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+
+
+
+
 
     //Populate Categories from CategoriesController.
     async function populateCategories() {
-
+        
         
         const budgetId = budget.id;
 
@@ -45,13 +70,14 @@ export const SelectedBudget = (props) => {
     
 
     useEffect(() => {
+        populatePurchases();
         populateCategories();
     }, []);
     
     function tabView() {
         if (tabValue === 'one') {
             return (
-                <CategoryPurchaseForm />
+                <PurchaseInfo purchases={purchases} purchasesLoading={purchasesLoading} categories={categories} categoriesLoading={categoriesLoading} populateCategories={populateCategories} userId={userId} budget={budget} />
             );
         }
         else if (tabValue === 'two') {

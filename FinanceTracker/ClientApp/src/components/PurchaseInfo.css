@@ -1,0 +1,32 @@
+﻿
+.no-purchases {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    padding: 15px;
+    margin-top: 10px;
+    text-align: center;
+    color: #341542;
+    width: 100vw;
+    min-height: 100%
+}
+
+.no-purchases h3 {
+    margin-top: 25px;
+    margin-bottom: 40px;
+}
+
+.purchase-info {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    text-align: center;
+    padding: 10px 35px 10px 35px;
+}
+
+.purchase-info h3, .no-purchases h3 {
+    color: #341542;
+    margin-top: 25px;
+    margin-bottom: 35px;
+    text-decoration: underline;
+}

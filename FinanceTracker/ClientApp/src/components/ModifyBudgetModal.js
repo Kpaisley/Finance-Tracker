@@ -21,15 +21,15 @@ export default function ModifyBudgetModal(props) {
 
 
         if (budgetName.value.length <= 0) {
-            setErrorFor(budgetName, 'Budget name cannot be blank');
+            setErrorFor(budgetName, 'Budget name must contain at least <strong>1</strong> character');
             return false;
         }
         else if (budgetName.value.length > 50) {
-            setErrorFor(budgetName, 'Budget name must be 50 characters or less');
+            setErrorFor(budgetName, 'Budget name cannot exceed <strong>50</strong> characters');
             return false;
         }
         else if (regex.test(budgetName.value) === false) {
-            setErrorFor(budgetName, 'Budget name is not valid');
+            setErrorFor(budgetName, 'Budget name is <strong>not valid</strong>');
             return false;
         }
         else {
@@ -118,9 +118,9 @@ export default function ModifyBudgetModal(props) {
                             <div className="form-input">
                                 <label>Budget Name</label>
                                 <span className='input-wrapper'>
-                                    <input id="new-budget-name" type="text" placeholder={props.budget.budgetName} maxLength="25"></input>
-                                    <FontAwesomeIcon className="checkmark-icon" icon={faCircleCheck} />
-                                    <FontAwesomeIcon className="error-icon" icon={faCircleExclamation} />
+                                    <input id="new-budget-name" type="text" placeholder={props.budget.budgetName} maxLength="50"></input>
+                                    <FontAwesomeIcon className="modal-checkmark-icon" icon={faCircleCheck} />
+                                    <FontAwesomeIcon className="modal-error-icon" icon={faCircleExclamation} />
                                 </span>
                                 <small></small>
                             </div>

@@ -85,14 +85,26 @@ namespace FinanceTracker.Controllers
             }
 
         
-            //Remove all categories linked to the Budget ID
+            
             var categoriesToDelete = _context.Categories.Where(c => c.BudgetId == budgetToDelete.Id).ToList();
+            var purchasesToDelete = new List<Purchase>();
+
+            foreach (var category in categoriesToDelete)
+            {
+                var userPurchases = _context.Purchases.Where(p => p.CategoryId == category.Id).ToList();
+                purchasesToDelete.AddRange(userPurchases);
+            }
+
+            //Remove any purchases associated with budget categories
+            _context.Purchases.RemoveRange(purchasesToDelete);
+
+            //Remove all categories linked to the Budget ID
             _context.Categories.RemoveRange(categoriesToDelete);
 
             //Remove the budget
             _context.Budgets.Remove(budgetToDelete);
             _context.SaveChanges();
-            
+
         }
     }
 }

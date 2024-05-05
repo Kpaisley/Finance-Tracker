@@ -1,6 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRightFromBracket, faDeleteLeft, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRightFromBracket, faDeleteLeft, faPenToSquare, faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
@@ -10,7 +10,7 @@ export const PrimaryButton = (props) => {
 
     return (
         
-        <Button onClick={props.action} variant="outlined">{props.text}</Button>
+        <Button onClick={props.action} variant="outlined" className="primary-btn">{props.text}</Button>
         
     );
 }
@@ -51,6 +51,15 @@ export const ModifyButton = (props) => {
             Modify
         </Button>
 
+    );
+}
+
+export const RefreshIcon = (props) => {
+
+    return (
+        <Button onClick={props.action} variant="outlined" className="refresh-icon" >
+                <FontAwesomeIcon icon={faArrowsRotate} size="lg" />
+        </Button>
     );
 }
 

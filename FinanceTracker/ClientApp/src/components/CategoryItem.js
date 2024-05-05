@@ -1,14 +1,14 @@
 ﻿import ModifyCategoryModal from './ModifyCategoryModal';
-import { useState } from 'react';
 import './CategoryItem.css';
 import Stack from '@mui/material/Stack';
-import { DeleteArrowIcon, ModifyIcon } from './Buttons';
+import { DeleteArrowIcon } from './Buttons';
 
 export const CategoryItem = (props) => {
 
     async function deleteCategoryItem() {
 
-        const categoryToDelete = {
+        if (window.confirm('Are you sure you want to delete this category and all its related data?') === true) {
+            const categoryToDelete = {
             userId: props.userId,
             categoryId: props.category.id,
             budgetId: props.category.budgetId
@@ -28,6 +28,9 @@ export const CategoryItem = (props) => {
             console.log(error);
         }
     }
+        }
+
+        
 
 
     return (

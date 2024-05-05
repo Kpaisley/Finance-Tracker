@@ -32,14 +32,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 200px;
     padding: 7px;
     margin-bottom: 12px;
 }
 
 .form-input label {
     font-weight: 500;
-    font-size: 21px;
+    font-size: 20px;
     margin: 0 0 8px 0;
 }
 
@@ -60,6 +59,7 @@
 
 .form-input small {
     text-align: center;
+    margin-top: 5px;
 }
 
 .input-wrapper {
@@ -74,7 +74,7 @@
     margin: 15px 0 12px 0;
 }
 
-.checkmark-icon {
+.modal-checkmark-icon {
     position: absolute;
     top: 20%;
     left: 88%;
@@ -82,16 +82,12 @@
     visibility: hidden;
 }
 
-.error-icon {
+.modal-error-icon {
     position: absolute;
     top: 20%;
     left: 88%;
     color: #d32f2f;
     visibility: hidden;
-}
-
-.form-input small {
-    margin-top: 5px;
 }
 
 .form-input.success input {
@@ -102,11 +98,11 @@
     border-color: #d32f2f;
 }
 
-.form-input.success .checkmark-icon {
+.form-input.success .modal-checkmark-icon {
     visibility: visible;
 }
 
-.form-input.error .error-icon {
+.form-input.error .modal-error-icon {
     visibility: visible;
 }
 

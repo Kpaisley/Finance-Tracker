@@ -122,6 +122,7 @@ namespace FinanceTracker.Controllers
         [HttpDelete]
         public void Delete([FromBody] DeleteCategoryDTO category)
         {
+            //VERIFY THE CATEGORY BELONGS TO THE USERS BUDGET
             var userBudget = _context.Budgets.FirstOrDefault(b => b.UserId.Equals(category.userId) && b.Id == category.budgetId);
 
             if (userBudget == null)
@@ -129,14 +130,22 @@ namespace FinanceTracker.Controllers
                 throw new Exception();
             }
             else
-            {
-                //MODIFY THE DateLastModified FIELD FOR THE USER'S SELECTED BUDGET
-                userBudget.DateLastModified = DateTime.Now.Date;
-
+             {
+                
                 var categoryToDelete = _context.Categories.FirstOrDefault(c => c.Id == category.categoryId && c.BudgetId == category.budgetId);
                 if (categoryToDelete != null)
                 {
+                    //DELETE PURCHASES RELATED TO THE CATEGORY
+                    var purchasesToDelete = _context.Purchases.Where(p => p.CategoryId == categoryToDelete.Id);
+                    _context.RemoveRange(purchasesToDelete);
+
+                    //DELETE CATEGORY
                     _context.Categories.Remove(categoryToDelete);
+
+                    //MODIFY THE DateLastModified FIELD FOR THE USER'S SELECTED BUDGET
+                    userBudget.DateLastModified = DateTime.Now.Date;
+
+
                     _context.SaveChanges();
                 }
 
