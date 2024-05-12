@@ -21,10 +21,10 @@ namespace FinanceTracker.Controllers
 
 
 
-        //RETURN A USERS PURCHASES FOR THEIR ASSOCIATED BUDGET
+        //RETURN A USERS PURCHASES FOR THEIR ASSOCIATED BUDGET FOR THE SPECIFIED MONTH
         // GET: api/<PurchasesController>
-        [HttpGet("{userId}/{budgetId}")]
-        public IEnumerable<Purchase> Get(string userId, int budgetId)
+        [HttpGet("{userId}/{budgetId}/{month}/{year}")]
+        public IEnumerable<Purchase> Get(string userId, int budgetId, int month, int year)
         {
             //INITIALIZE EMPTY ARRAY OF PURCHASES
             var budgetPurchases = new List<Purchase>();
@@ -38,10 +38,14 @@ namespace FinanceTracker.Controllers
             }
             else
             {
-                //LOAD ALL CATEGORIES ASSOCIATED TO THE USER BUDGET
+
+                //LOAD ALL PURCHASES ASSOCIATED TO THE USER BUDGET
                 _context.Entry(userBudget).Collection(b => b.Purchases).Load();
 
-                foreach (Purchase p in userBudget.Purchases)
+                //ADD ALL PURCHASES ASSOCIATED WITH THE PROVIDED MONTH & YEAR TO LIST
+                var purchases = userBudget.Purchases.Where(p => p.PurchaseDate.Month == (month+1) && p.PurchaseDate.Year == year).ToList();
+
+                foreach (Purchase p in purchases)
                 {
                     //ADD ALL CATEGORIES ASSOCIATED TO THE USER BUDGET INTO BudgetCategories ARRAY
                     Purchase purchaseToAdd = new Purchase

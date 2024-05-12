@@ -4,7 +4,6 @@ import { faCircleCheck, faCircleExclamation } from '@fortawesome/free-solid-svg-
 import { PrimaryButton, RefreshIcon } from './Buttons';
 import './AddPurchaseForm.css';
 import AddCategoryModal from './AddCategoryModal';
-import { request } from '../../../../node_modules/dom-helpers/cjs/animationFrame';
 
 export const AddPurchaseForm = (props) => {
 
@@ -80,16 +79,11 @@ export const AddPurchaseForm = (props) => {
             try {
                 await fetch('/purchases', requestOptions);
                 successMsg.innerHTML = purchaseToAdd.purchaseName + " added!";
+                props.populatePurchases();
             }
             catch (error) {
                 console.log(error.message);
             }
-           
-
-            
-
-            
-            
 
         }
         

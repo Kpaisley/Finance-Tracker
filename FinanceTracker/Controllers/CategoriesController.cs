@@ -20,13 +20,13 @@ namespace FinanceTracker.Controllers
 
         //POPULATE A USERS CATEGORIES FOR THEIR SELECTED BUDGET
         // GET api/<CategoriesController>/5
-        [HttpGet("{userId}/{budgetId}")]
-        public IEnumerable<Category> Get(string userId, int budgetId)
+        [HttpGet("{userId}/{budgetId}/{month}/{year}")]
+        public IEnumerable<Category> Get(string userId, int budgetId, int month, int year)
         {
             //INITIALIZE EMPTY ARRAY OF CATEGORIES
             var budgetCategories = new List<Category>();
 
-            //INITIALIZE USER BUDGET
+            //INITIALIZE USER BUDGET & VERIFY IT BELONGS TO THE USER
             var userBudget = _context.Budgets.FirstOrDefault(b => b.UserId.Equals(userId) && b.Id == budgetId);
 
             if (userBudget == null)
@@ -40,16 +40,23 @@ namespace FinanceTracker.Controllers
 
                 foreach (Category c in userBudget.Categories)
                 {
-                    //ADD ALL CATEGORIES ASSOCIATED TO THE USER BUDGET INTO BudgetCategories ARRAY
-                    Category categoryToAdd = new Category
-                    {
-                        Id = c.Id,
-                        BudgetId = c.BudgetId,
-                        CategoryName = c.CategoryName,
-                        CategoryTotal = c.CategoryTotal
-                    };
 
-                    budgetCategories.Add(categoryToAdd);
+                    //FILTER OUT CATEGORIES THAT HAVE BEEN CREATED AFTER THE GIVEN MONTH/YEAR   (Ex. JANUARY WILL NOT POPULATE CATEGORIES CREATED IN FEBRURARY ONWARDS)
+                    if (c.CategoryDate.Year <= year && c.CategoryDate.Month <= (month + 1))
+                    {
+                        //ADD ALL CATEGORIES ASSOCIATED TO THE USER BUDGET INTO BudgetCategories ARRAY
+                        Category categoryToAdd = new Category
+                        {
+                            Id = c.Id,
+                            BudgetId = c.BudgetId,
+                            CategoryName = c.CategoryName,
+                            CategoryTotal = c.CategoryTotal,
+                            CategoryDate = c.CategoryDate,
+                        };
+
+                        budgetCategories.Add(categoryToAdd);
+                    }
+
                 }
 
             }
@@ -81,8 +88,9 @@ namespace FinanceTracker.Controllers
                 var categoryToAdd = new Category {
                     BudgetId = userBudget.Id,
                     CategoryName = category.categoryName,
-                    CategoryTotal = category.categoryLimit
-                };
+                    CategoryTotal = category.categoryLimit,
+                    CategoryDate = DateTime.Now.Date
+            };
                 _context.Categories.Add(categoryToAdd);
                 _context.SaveChanges();
             }

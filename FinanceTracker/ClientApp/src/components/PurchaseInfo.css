@@ -30,3 +30,47 @@
     margin-bottom: 35px;
     text-decoration: underline;
 }
+
+.purchase-table {
+    border: 2px solid red;
+    margin-top: 10px;
+}
+
+.expenses-date {
+    width: 325px;
+    margin: auto;
+    position: relative;
+}
+
+.expenses-date h2 {
+    margin: 10px 15px;
+}
+
+.chevron-icon-left {
+    position: absolute;
+    left: 2px;
+    top: 5px;
+    padding: 3px;
+    transition: font-size linear .1s;
+}
+
+.chevron-icon-right {
+    position: absolute;
+    right: 2px;
+    top: 5px;
+    padding: 3px;
+    transition: font-size linear .1s;
+}
+
+.chevron-icon-left:hover, .chevron-icon-right:hover {
+    cursor: pointer;
+    font-size: 26px;
+}
+
+
+
+
+
+
+
+

@@ -8,27 +8,29 @@ export const CategoryItem = (props) => {
     async function deleteCategoryItem() {
 
         if (window.confirm('Are you sure you want to delete this category and all its related data?') === true) {
+
             const categoryToDelete = {
-            userId: props.userId,
-            categoryId: props.category.id,
-            budgetId: props.category.budgetId
-        }
+                userId: props.userId,
+                categoryId: props.category.id,
+                budgetId: props.category.budgetId
+            }
 
-        const requestOptions = {
-            method: 'DELETE',
-            headers: { 'Content-Type': "application/json" },
-            body: JSON.stringify(categoryToDelete)
-        }
+            const requestOptions = {
+                method: 'DELETE',
+                headers: { 'Content-Type': "application/json" },
+                body: JSON.stringify(categoryToDelete)
+            }
 
-        try {
-            await fetch('categories', requestOptions)
-            props.populateCategories();
-        }
-        catch (error) {
-            console.log(error);
+            try {
+                await fetch('categories', requestOptions);
+                props.populateCategories();
+                props.populatePurchases();
+            }
+            catch (error) {
+                console.log(error);
+            }
         }
     }
-        }
 
         
 

@@ -63,7 +63,7 @@ export const Dashboard = (props) => {
         <div id="dashboard" className='noselect'>
             <div className="dashboard-bg">
                 <LogoutButton />
-                <h1 className="title">Welcome to your Dashboard</h1>
+                <h1 className="title">Budget Flow</h1>
                 <h4 className="budget-count">Total Budgets: {budgets.length} / 3</h4>
                 {content()}
                 <hr />

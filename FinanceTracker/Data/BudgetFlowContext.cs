@@ -49,6 +49,7 @@ public partial class BudgetFlowContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.BudgetId).HasColumnName("BudgetID");
+            entity.Property(e => e.CategoryDate).HasColumnType("date");
             entity.Property(e => e.CategoryName)
                 .HasMaxLength(25)
                 .IsUnicode(false);

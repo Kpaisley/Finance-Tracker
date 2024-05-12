@@ -69,11 +69,11 @@
     height: 38px;
     width: 140px;
     justify-content: space-between;
+    margin-bottom: 5px;
 }
 
 .success-msg {
     color: #00be21;
-    margin-top: 8px;
     max-width: 325px;
     width: 70vw;
     overflow: hidden;
