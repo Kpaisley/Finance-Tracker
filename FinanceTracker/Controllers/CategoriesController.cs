@@ -18,7 +18,7 @@ namespace FinanceTracker.Controllers
             _context = context;
         }
 
-        //POPULATE A USERS CATEGORIES FOR THEIR SELECTED BUDGET
+        //POPULATE A USERS CATEGORIES WIHTIN THEIR ASSOCIATED BUGDET FOR THE SPECIFIED MONTH
         // GET api/<CategoriesController>/5
         [HttpGet("{userId}/{budgetId}/{month}/{year}")]
         public IEnumerable<Category> Get(string userId, int budgetId, int month, int year)

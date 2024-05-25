@@ -9,9 +9,8 @@ export const PurchaseInfo = (props) => {
 
     const dates = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-
+    //Changes the selected date forward or backwards by one month
     const changeExpensesDate = (value) => {
-
         if (value === "back" && props.month === 0) {
             props.setYear(props.year - 1);
             props.setMonth(11);
@@ -31,12 +30,13 @@ export const PurchaseInfo = (props) => {
         }
     }
 
-
+    //Return true if the month selected is the current month
     const isMonthCurrent = () => {
         const date = new Date();
         const month = date.getMonth();
+        const year = date.getFullYear();
 
-        if (month === props.month) {
+        if (month === props.month && year === props.year) {
             return true;
         }
         else
@@ -54,42 +54,33 @@ export const PurchaseInfo = (props) => {
         
     }
 
-
-    //Return loader icon if Purchases or Categories are populating.
-    if (props.purchasesLoading || props.categoriesLoading) {
-        return (
-            <div className="loader"><div></div><div></div><div></div><div></div></div>
-        );
-    }
-
-    else if (props.purchases.length <= 0) {
-        return (
-            <div className="no-purchases">
-                <h3>Add an expense below to track it!</h3>
-                <AddPurchaseForm populatePurchases={props.populatePurchases} categories={props.categories} populateCategories={props.populateCategories} userId={props.userId} budget={props.budget} />
-                <div className="purchase-table">
-                    <div className="expenses-date">
-                        <FontAwesomeIcon className="chevron-icon-left" icon={faChevronLeft} size="xl" onClick={() => changeExpensesDate("back")} />
-                        <h2>{dates[props.month] + " " + props.year}</h2>
-                        <FontAwesomeIcon className="chevron-icon-right" icon={faChevronRight} size="xl" hidden={isMonthCurrent()} onClick={() => changeExpensesDate("forward")} />
-
+    const purchases = () => {
+        if (props.purchasesLoading) {
+            return (
+                <div>
+                    <div>
+                        <div className="spinner-loader"></div>
                     </div>
-                    <h3>
-                        You are not tracking any expenses this month
-                    </h3>
                 </div>
-            </div>
+            );
+        }
+        else if (props.purchases.length <= 0) {
+            return (
+                <h3>You are not tracking any expenses this month</h3>
+            );
+        }
+        else return (
+            props.purchases.map(purchase =>
+                <PurchaseItem key={purchase.id} purchase={purchase} getCategoryName={getCategoryName} />
+            )
         );
+
     }
-
-
-
-    else
         
         return (
             <div className="purchase-info">
                 <h3>Manage your Expenses Below!</h3>
-                <AddPurchaseForm populatePurchases={props.populatePurchases} categories={props.categories} populateCategories={props.populateCategories} userId={props.userId} budget={props.budget} />
+                <AddPurchaseForm populatePurchases={props.populatePurchases} categoriesLoading={props.categoriesLoading} categories={props.categories} populateCategories={props.populateCategories} userId={props.userId} budget={props.budget} month={props.month} year={props.year} />
                 <div className="purchase-table">
                     <div className="expenses-date">
                         <FontAwesomeIcon className="chevron-icon-left" icon={faChevronLeft} size="xl" onClick={() => changeExpensesDate("back") } />
@@ -97,12 +88,20 @@ export const PurchaseInfo = (props) => {
                         <FontAwesomeIcon className="chevron-icon-right" icon={faChevronRight} size="xl" hidden={isMonthCurrent()} onClick={() => changeExpensesDate("forward")} />
                         
                     </div>
-                    {
-                        props.purchases.map(purchase =>
-                            <PurchaseItem key={purchase.id} purchase={purchase} getCategoryName={getCategoryName} />
-                        )
-                    }
+                    <div className="purchases">
+                        {
+                            purchases()
+                        }
+                    </div>
                 </div>
+                {
+                    props.categories.map(category =>
+                        <div key={category.id} >
+                            {category.categoryName + " " + category.categoryTotal}
+                            
+                        </div>
+                    )
+                }
             </div>
         );
 

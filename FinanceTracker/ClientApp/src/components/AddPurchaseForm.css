@@ -32,14 +32,14 @@
     border: 2px solid #daf0fd;
     border-radius: 8px;
     text-align: center;
-    color: #85cff9;
+    color: #6d6d6d;
     width: 175px;
     padding-left: 27px;
     padding-right: 27px;
 }
 
 .add-purchase-input input::placeholder {
-     color: #85cff9;
+     color: #6d6d6d;
 }
 
 .add-purchase-input select {
@@ -47,7 +47,7 @@
     border: 2px solid #daf0fd;
     border-radius: 8px;
     text-align: center;
-    color: #85cff9;
+    color: #6d6d6d;
     width: 175px;
     outline: none;
     padding: 3px;

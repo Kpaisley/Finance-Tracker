@@ -21,7 +21,7 @@ namespace FinanceTracker.Controllers
 
 
 
-        //RETURN A USERS PURCHASES FOR THEIR ASSOCIATED BUDGET FOR THE SPECIFIED MONTH
+        //RETURN A USERS PURCHASES WITHIN THEIR ASSOCIATED BUDGET FOR THE SPECIFIED MONTH
         // GET: api/<PurchasesController>
         [HttpGet("{userId}/{budgetId}/{month}/{year}")]
         public IEnumerable<Purchase> Get(string userId, int budgetId, int month, int year)

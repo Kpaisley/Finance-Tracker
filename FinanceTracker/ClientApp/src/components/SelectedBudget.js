@@ -20,7 +20,7 @@ export const SelectedBudget = (props) => {
     const [year, setYear] = useState(date.getFullYear());
 
     
-
+    //Populate Purchases from PurchasesController from the selected month
     async function populatePurchases() {
 
         const budgetId = budget.id;
@@ -39,20 +39,16 @@ export const SelectedBudget = (props) => {
 
 
 
-
-
-
-    //Populate Categories from CategoriesController.
+    //Populate Categories from CategoriesController from the selected month.
     async function populateCategories() {
         
         
         const budgetId = budget.id;
-
+        setPurchasesLoading(true);
         try {
             const response = await fetch('categories/' + userId + "/" + budgetId + "/" + month + "/" + year);
             const data = await response.json();
             setCategories(data);
-            addCategoryTotals(data);
             setCategoriesLoading(false);
         }
         catch (error) {
@@ -87,8 +83,8 @@ export const SelectedBudget = (props) => {
     function tabView() {
         if (tabValue === 'one') {
             return (
-                <PurchaseInfo purchases={purchases} purchasesLoading={purchasesLoading} populatePurchases={populatePurchases} categories={categories} categoriesLoading={categoriesLoading} populateCategories={populateCategories}
-                    userId={userId} budget={budget} month={month} setMonth={setMonth} year={year} setYear={setYear} />
+                <PurchaseInfo purchases={purchases} purchasesLoading={purchasesLoading} setPurchasesLoading={setPurchasesLoading} populatePurchases={populatePurchases} categories={categories} categoriesLoading={categoriesLoading}
+                    populateCategories={populateCategories} userId={userId} budget={budget} month={month} setMonth={setMonth} year={year} setYear={setYear} />
             );
         }
         else if (tabValue === 'two') {

@@ -96,6 +96,9 @@ export const AddPurchaseForm = (props) => {
         var categorySuccess = false;
         var dateSuccess = false;
 
+        var month = ("0" + (props.month + 1)).slice(-2);
+
+        console.log();
 
         //Validate purchaseName
         if (purchaseName.value === '') {
@@ -136,6 +139,10 @@ export const AddPurchaseForm = (props) => {
             setErrorFor(purchaseDate, 'Please select a date')
         }
 
+        else if (purchaseDate.value.substring(5, 7) !== ("0" + (props.month + 1)).slice(-2)) {
+            setErrorFor(purchaseDate, 'You must pick a date from the selected month below')
+        }
+
         else {
             setSuccessFor(purchaseDate)
             dateSuccess = true;
@@ -173,6 +180,27 @@ export const AddPurchaseForm = (props) => {
         formInput.className = "add-purchase-input success";
     }
 
+    function getFirstDay() {
+        var month = ("0" + (props.month + 1)).slice(-2);
+        var year = props.year;
+        var firstDay = year + "-" + month + "-01";
+
+        return firstDay;
+    }
+
+    function getLastDay() {
+        var month = ("0" + (props.month + 1)).slice(-2);
+        var year = props.year;
+        var day = new Date(year, month, 0).getDate();
+        var lastDay = year + "-" + month + "-" + day;
+
+
+        return lastDay;
+
+
+    }
+
+
 
     return (
         <form id="add-purchase-form">
@@ -200,7 +228,7 @@ export const AddPurchaseForm = (props) => {
             <div className="add-purchase-input">
                 <label>Category</label>
                 <span className="purchase-input-wrapper">
-                    <select id="add-purchase-category">
+                    <select id="add-purchase-category" disabled={props.categoriesLoading}>
                         {props.categories.map(category =>
                             <option key={category.id} value={category.id}>{category.categoryName}</option>
                         )}
@@ -215,7 +243,7 @@ export const AddPurchaseForm = (props) => {
             <div className="add-purchase-input">
                 <label>Date of Expense</label>
                 <span className="purchase-input-wrapper">
-                    <input type="date" id="add-purchase-date" ></input>
+                    <input type="date" id="add-purchase-date" min={getFirstDay()} max={getLastDay()}  ></input>
                     <FontAwesomeIcon className="purchase-checkmark-icon" icon={faCircleCheck} />
                     <FontAwesomeIcon className="purchase-error-icon" icon={faCircleExclamation} />
                 </span>

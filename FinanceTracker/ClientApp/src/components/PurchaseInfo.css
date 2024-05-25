@@ -67,7 +67,16 @@
     font-size: 26px;
 }
 
+.purchases {
+    border: 2px solid black;
+    min-height: 150px;
+    align-content: center;
+}
 
+.purchases h3 {
+    padding-top: 15px;
+
+}
 
 
 
