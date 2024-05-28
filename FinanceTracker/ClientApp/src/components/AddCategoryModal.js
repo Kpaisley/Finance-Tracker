@@ -97,6 +97,7 @@ export default function AddCategoryModal(props) {
 
             try {
                 await fetch('/categories', requestOptions);
+                props.populateCurrentCategories();
                 props.populateCategories();
             }
             catch (error) {

@@ -10,8 +10,9 @@ export const SelectedBudget = (props) => {
     const budget = props.budget;
     const userId = props.budget.userId;
     const [categories, setCategories] = useState([]);
-    const [categoryTotals, setCategoryTotals] = useState(0.00);
     const [categoriesLoading, setCategoriesLoading] = useState(true);
+    const [currentCategories, setCurrentCategories] = useState([]);
+    const [currentCategoriesLoading, setCurrentCategoriesLoading] = useState(true);
     const [purchases, setPurchases] = useState([]);
     const [purchasesLoading, setPurchasesLoading] = useState(true);
     const [tabValue, setTabValue] = useState('one');
@@ -42,9 +43,8 @@ export const SelectedBudget = (props) => {
     //Populate Categories from CategoriesController from the selected month.
     async function populateCategories() {
         
-        
         const budgetId = budget.id;
-        setPurchasesLoading(true);
+        
         try {
             const response = await fetch('categories/' + userId + "/" + budgetId + "/" + month + "/" + year);
             const data = await response.json();
@@ -56,30 +56,39 @@ export const SelectedBudget = (props) => {
         }
     }
 
-    //Add the total from each Category.
-    function addCategoryTotals(data) {
-        var total = 0;
-        for (var i = 0; i < data.length; i++) {
-            total += data[i].categoryTotal;
+    async function populateCurrentCategories() {
+        
+        const budgetId = budget.id;
+
+        try {
+            const response = await fetch('categories/' + userId + '/' + budgetId);
+            const data = await response.json();
+            setCurrentCategories(data);
+            setCurrentCategoriesLoading(false);
+
         }
-        setCategoryTotals(total.toFixed(2));
+        catch (error) {
+            console.log(error);
+        }
     }
 
-
     
-    //Populate Purchases & Categories on load.
-    useEffect(() => {
-        populatePurchases();
-        populateCategories();
-    }, []);
 
-    //Populate Purchases & Categories when user changes month / year value
+    //Populate Categories & Purchases on load && when user changes month / year value
     useEffect(() => {
-        populatePurchases();
+        setCategoriesLoading(true);
         populateCategories();
+        setPurchasesLoading(true);
+        populatePurchases();
     }, [month])
 
+
+    //Populate CurrentCategories on load
+    useEffect(() => {
+        populateCurrentCategories();
+    }, [])
     
+
     function tabView() {
         if (tabValue === 'one') {
             return (
@@ -89,11 +98,14 @@ export const SelectedBudget = (props) => {
         }
         else if (tabValue === 'two') {
             return (
-                <CategoryInfo categories={categories} categoryTotals={categoryTotals} categoriesLoading={categoriesLoading} budget={budget} userId={userId} populatePurchases={populatePurchases} populateCategories={populateCategories} />
+                <CategoryInfo currentCategories={currentCategories} currentCategoriesLoading={currentCategoriesLoading} populateCurrentCategories={populateCurrentCategories} populateCategories={populateCategories}
+                    populatePurchases={populatePurchases} userId={userId} budgetId={budget.id} />
             );
         }
 
     }
+
+
 
 
 

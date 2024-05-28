@@ -1,4 +1,37 @@
-﻿
+﻿.category-info {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    align-items: center;
+    padding: 10px 35px 10px 35px;
+}
+
+.category-info .loader {
+    margin: 50px 10px 50px 10px;
+}
+
+.category-info h3 {
+    margin: 50px 10px 40px 10px;
+    text-decoration: underline;
+}
+
+.category-info h4 {
+    margin-bottom: 20px;
+}
+
+.category-items {
+    margin-top: 30px;
+}
+
+
+
+
+
+
+
+
+
+/*
 .no-categories {
     width: auto;
     padding: 15px;
@@ -42,4 +75,4 @@
 
 .category-info .add-category {
     margin-bottom: 30px;
-}
+}*/

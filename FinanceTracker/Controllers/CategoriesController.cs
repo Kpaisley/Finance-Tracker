@@ -18,6 +18,44 @@ namespace FinanceTracker.Controllers
             _context = context;
         }
 
+        //POPULATE A USERS CURRENT CATEGORIES WITHIN THEIR ASSOCIATED BUDGET
+        [HttpGet ("{userId}/{budgetId}")]
+        public IEnumerable<Category> Get(string userId, int budgetId)
+        {
+            //INITIALIZE EMPTY ARRAY OF CATEGORIES
+            var budgetCategories = new List<Category>();
+
+            //INITIALIZE USER BUDGET AND VERIFY IT BELONGS TO THE USER
+            var userBudget = _context.Budgets.FirstOrDefault(b => b.UserId.Equals(userId) && b.Id == budgetId);
+
+            if (userBudget == null)
+            {
+                throw new Exception();
+            }
+            else
+            {
+                //LOAD ALL CATEGORIES ASSOCIATED TO THE USER BUDGET
+                _context.Entry(userBudget).Collection(b => b.Categories).Load();
+
+                foreach (Category c in userBudget.Categories)
+                {
+                    //ADD ALL CATEGORIES ASSOCIATED TO THE USER BUDGET INTO BudgetCategories ARRAY
+                    Category categoryToAdd = new Category
+                    {
+                        Id = c.Id,
+                        BudgetId = c.BudgetId,
+                        CategoryName = c.CategoryName,
+                        CategoryTotal = c.CategoryTotal,
+                        CategoryDate = c.CategoryDate,
+                    };
+
+                    budgetCategories.Add(categoryToAdd);
+                }
+            }
+            return budgetCategories;
+        }
+
+
         //POPULATE A USERS CATEGORIES WIHTIN THEIR ASSOCIATED BUGDET FOR THE SPECIFIED MONTH
         // GET api/<CategoriesController>/5
         [HttpGet("{userId}/{budgetId}/{month}/{year}")]

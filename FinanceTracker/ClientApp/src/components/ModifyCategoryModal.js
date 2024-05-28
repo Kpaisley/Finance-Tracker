@@ -98,6 +98,7 @@ export default function ModifyCategoryModal(props) {
             try {
                 await fetch('categories/', requestOptions);
                 handleClose();
+                props.populateCurrentCategories();
                 props.populateCategories();
                 
             }

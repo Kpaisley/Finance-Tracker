@@ -23,6 +23,7 @@ export const CategoryItem = (props) => {
 
             try {
                 await fetch('categories', requestOptions);
+                props.populateCurrentCategories();
                 props.populateCategories();
                 props.populatePurchases();
             }
@@ -43,7 +44,7 @@ export const CategoryItem = (props) => {
             <div className="category-total">${props.category.categoryTotal.toFixed(2)}</div>
 
             <Stack direction="row" spacing={3}>
-                <ModifyCategoryModal populateCategories={props.populateCategories} userId={props.userId} category={props.category} deleteCategoryItem={deleteCategoryItem} />
+                <ModifyCategoryModal populateCategories={props.populateCategories} populateCurrentCategories={props.populateCurrentCategories} userId={props.userId} category={props.category} deleteCategoryItem={deleteCategoryItem} />
                 <DeleteArrowIcon action={deleteCategoryItem} />
             </Stack>
         </div>
